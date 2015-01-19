@@ -1,0 +1,9 @@
+- name: download logstash
+  get_url: url=https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb dest=/vagrant/
+  notify:
+    - install logstash
+
+- name: download logstash contrib
+  get_url: url=https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash-contrib_1.4.2-1-efd53ef_all.deb dest=/vagrant/ 
+  notify:
+    - install logstash contrib

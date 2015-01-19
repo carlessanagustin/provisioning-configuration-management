@@ -1,0 +1,6 @@
+---
+required_packages:
+        - openjdk-7-jre
+        - openjdk-7-jdk
+
+

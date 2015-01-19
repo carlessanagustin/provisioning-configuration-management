@@ -1,0 +1,5 @@
+---
+- name: download kibana 4
+  get_url: url=https://download.elasticsearch.org/kibana/kibana/kibana-4.0.0-beta3.tar.gz dest=/vagrant/kibana-4.0.0-beta3.tar.gz
+  notify:
+    - uncompress kibana
