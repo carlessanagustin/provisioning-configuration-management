@@ -1,0 +1,12 @@
+---
+#
+# ansible-playbook test.yml -vvvv -i hosts/hostID 
+#
+- hosts: all
+  tasks:
+    - name: hello world
+      command: uname -a
+      register: uname
+
+    - debug: var=uname.stdout
+
