@@ -1,3 +1,11 @@
+- name: set timezone to UTC
+  sudo: yes
+  sudo_user: root
+  shell: "{{ item }}"
+  with_items:
+    - echo "Etc/UTC" | tee /etc/timezone
+    - dpkg-reconfigure --frontend noninteractive tzdata
+
 - name: ensure ntp is at the latest version
   sudo: yes
   sudo_user: root
@@ -54,9 +62,15 @@
 
 - name: create /home/vagrant/.bash_profile
   command: touch /home/vagrant/.bash_profile
+  tags:
+    - vagrant
 
 - name: add line to file 3
   lineinfile: dest=/home/vagrant/.bash_profile line='LC_ALL="en_GB.UTF-8"'
+  tags:
+    - vagrant
 
 - name: add line to file 4
   lineinfile: dest=/home/vagrant/.bash_profile line='LANG="en_GB.UTF-8"'
+  tags:
+    - vagrant

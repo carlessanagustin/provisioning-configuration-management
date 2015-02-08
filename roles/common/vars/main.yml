@@ -13,3 +13,13 @@ base_packages:
    - lynx
    - links
    - links2
+   - build-essential
+   - make
+   - automake
+   - zip
+   - byobu
+   - htop
+   - rsync
+   - default-jdk
+   - sqlite3
+   - ntp
