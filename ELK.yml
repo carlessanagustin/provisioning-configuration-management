@@ -1,7 +1,6 @@
 ---
 - hosts: all
   roles:
-    - common
     - elasticsearch
     - logstash
     - kibana

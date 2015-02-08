@@ -1,2 +1,4 @@
 ---
-- include: ELK.yml
+- include: common.yml tags=common
+- include: ELK.yml tags=elk
+- include: nagios.yml tags=nagios
