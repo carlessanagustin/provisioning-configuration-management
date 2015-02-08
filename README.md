@@ -7,9 +7,11 @@ This is my personal repo of ansible playbooks, enjoy!
 ## ansible-playbook command
 
 * full line
+
         ansible-playbook install.yml -i hosts/all -vvv --tags=common,elk --skip-tags=nagios
 
 * ask for sudo password
+
         ansible-playbook install.yml -i hosts/all -vvv -K
 
 ## Vagrant environment
