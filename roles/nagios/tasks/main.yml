@@ -1,0 +1,9 @@
+---
+- name: apt-get install nagios_reqs @ vars
+  sudo: yes
+  sudo_user: root
+  apt: package={{ item }} state=latest
+  with_items: nagios_reqs
+  notify:
+    - restart apache2
+    - restart nagios3

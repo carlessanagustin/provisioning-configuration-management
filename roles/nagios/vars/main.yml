@@ -1,0 +1,8 @@
+---
+nagios_reqs:
+  - apache2
+  - libapache2-mod-php5
+  - build-essential
+  - libgd2-xpm-dev
+  - nagios3
+  - postfix
