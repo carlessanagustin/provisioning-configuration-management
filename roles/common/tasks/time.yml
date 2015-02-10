@@ -1,0 +1,15 @@
+---
+- name: set timezone to UTC
+  sudo: yes
+  sudo_user: root
+  shell: "{{ item }}"
+  with_items:
+    - echo "Etc/UTC" | tee /etc/timezone
+    - dpkg-reconfigure --frontend noninteractive tzdata
+
+- name: ensure ntp is at the latest version
+  sudo: yes
+  sudo_user: root
+  apt: pkg=ntp state=latest
+  notify:
+    - restart ntp

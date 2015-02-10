@@ -1,2 +1,4 @@
 ---
-- include: system.yml tags=basic_system
+- include: packages.yml tags=packages
+- include: time.yml tags=time
+- include: location.yml tags=location

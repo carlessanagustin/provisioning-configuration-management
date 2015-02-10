@@ -1,0 +1,38 @@
+---
+- name: aptget update if needed
+  sudo: yes
+  sudo_user: root
+  apt: update_cache=yes
+
+- name: aptget upgrade if needed
+  sudo: yes
+  sudo_user: root
+  apt: upgrade=safe
+
+- name: Check if anything needs autoremoving
+  sudo: yes
+  sudo_user: root
+  shell: apt-get -y --dry-run autoremove | grep -q "0 to remove"
+  register: check_autoremove
+  ignore_errors: True
+  changed_when: False
+  always_run: True
+
+- debug: var=check_autoremove
+
+- name: Autoremove unused packages
+  sudo: yes
+  sudo_user: root
+  command: apt-get -y autoremove
+  when: "check_autoremove.rc != 0"
+  register: autoremove_output
+
+- debug: var=autoremove_output
+
+- name: apt-get install base_packages
+  sudo: yes
+  sudo_user: root
+  apt: package={{ item }} state=latest
+  with_items: base_packages
+  ignore_errors: yes
+  
