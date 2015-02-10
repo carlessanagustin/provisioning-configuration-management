@@ -38,3 +38,9 @@
 - name: Ensure NTP is stopped and disabled at system start.
   service: name={{ ntp_daemon }} state=stopped enabled=no
   when: not ntp_enabled
+  
+- name:
+  sudo: yes
+  sudo_user: root
+  lineinfile: dest=/etc/cron.daily/ntpdate line='ntpdate es.pool.ntp.org' owner=root group=root mode=0755 create=yes
+  when: ansible_os_family == 'Debian'
