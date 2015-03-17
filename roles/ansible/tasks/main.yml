@@ -1,0 +1,31 @@
+---
+- name: add ansible repo
+  sudo: yes
+  sudo_user: root
+  apt_repository: repo={{ ansible_repo }}
+#  register: add_repo
+#
+#- name: print last step log
+#  debug: var=add_repo
+
+- name: aptget update if needed
+  sudo: yes
+  sudo_user: root
+  apt: update_cache=yes
+
+- name: apt-get install ansible_req_packages
+  sudo: yes
+  sudo_user: root
+  apt: package={{ item }} state=latest
+  with_items: ansible_req_packages
+
+#- name: Install latest Ansible
+#  sudo: yes
+#  sudo_user: root
+#  pip: name={{ item }} state=latest
+#  with_items: pip_packages
+
+- name: Install pywinrm (windows ssh like)
+  sudo: yes
+  sudo_user: root
+  pip: name={{ pywinrm_url }}

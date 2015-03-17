@@ -1,0 +1,25 @@
+---
+- hosts: all
+  tasks:
+    - name: ensure ntp is at the latest version
+      sudo: yes
+      sudo_user: root
+      apt: pkg=ntp state=latest
+      notify:
+      - restart ntp
+
+    - name: aptget update if needed
+      sudo: yes
+      sudo_user: root
+      apt: update_cache=yes
+
+    - name: aptget upgrade if needed
+      sudo: yes
+      sudo_user: root
+      apt: upgrade=safe
+
+  handlers:
+    - name: restart ntp
+      sudo: yes
+      sudo_user: root
+      service: name=ntp state=restarted

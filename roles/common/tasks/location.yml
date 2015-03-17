@@ -14,6 +14,11 @@
   tags:
     - vagrant
 
+- name: Specify valid locale
+  sudo: yes
+  sudo_user: root
+  command: locale-gen en_GB.UTF-8
+
 - name: add line to file 3
   lineinfile: dest=/home/vagrant/.bash_profile line='LC_ALL="en_GB.UTF-8"'
   tags:

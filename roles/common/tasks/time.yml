@@ -31,15 +31,19 @@
   notify:
     - restart ntp
     
-- name: Ensure NTP is running and enabled at system start.
+- name: Ensure NTP is running and enabled at system start
+  sudo: yes
+  sudo_user: root
   service: name={{ ntp_daemon }} state=started enabled=yes
   when: ntp_enabled
 
-- name: Ensure NTP is stopped and disabled at system start.
+- name: Ensure NTP is stopped and disabled at system start
+  sudo: yes
+  sudo_user: root
   service: name={{ ntp_daemon }} state=stopped enabled=no
   when: not ntp_enabled
   
-- name:
+- name: Add spain daily cron job
   sudo: yes
   sudo_user: root
   lineinfile: dest=/etc/cron.daily/ntpdate line='ntpdate es.pool.ntp.org' owner=root group=root mode=0755 create=yes
