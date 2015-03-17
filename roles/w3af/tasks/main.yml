@@ -1,0 +1,19 @@
+---
+# following instructions http://docs.w3af.org/en/latest/install.html
+- name: apt-get install w3af_reqs
+  sudo: yes
+  sudo_user: root
+  apt: package={{ item }} state=latest
+  with_items: w3af_reqs
+
+- name: upgrade pip
+  pip: name=pip state=latest
+
+- name: clone repo
+  git: repo={{ repo }} dest={{ destination }}
+
+- name: run command
+  command: {{ destination }}/w3af_console
+
+- name: run script
+  shell: /tmp/w3af_dependency_install.sh
