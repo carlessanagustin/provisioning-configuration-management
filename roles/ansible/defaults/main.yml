@@ -10,6 +10,7 @@ ansible_req_packages:
    - build-essential
    - python-virtualenv
    - ansible
+   - sshpass
    
 pip_packages:
    - setuptools
