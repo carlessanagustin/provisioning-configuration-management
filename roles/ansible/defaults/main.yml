@@ -13,5 +13,4 @@ ansible_req_packages:
    - sshpass
    
 pip_packages:
-   - setuptools
-   - ansible
+   - pywinrm
