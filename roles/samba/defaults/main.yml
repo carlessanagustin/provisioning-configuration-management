@@ -1,0 +1,7 @@
+---
+req_packages:
+   - cifs-utils
+   - smbclient
+
+etc_hosts: '10.0.0.1  yout_machine_name'
+etc_fstab: '//some/remote/machine /vagrant/local/folder  cifs  username=access_username,password=password,sec=ntlm  0 0'

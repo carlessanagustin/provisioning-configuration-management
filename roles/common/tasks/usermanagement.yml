@@ -1,0 +1,17 @@
+---
+- name: local - add user groups (um_usergroup var)
+  sudo: yes
+  sudo_user: root
+  group: name={{ item }} state=present
+  with_items: um_usergroup
+  
+- name: local - add deploy user
+  sudo: yes
+  sudo_user: root
+  user: name=deploy shell=/bin/bash groups=admin,deploy group=deploy generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
+
+- name: local - add user int
+  sudo: yes
+  sudo_user: root
+  lineinfile: dest=/etc/sudoers line="{{ item }}" owner=root group=root mode=0440
+  with_items: um_sudoers
