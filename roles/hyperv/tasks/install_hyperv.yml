@@ -1,0 +1,5 @@
+---
+- name: Install Hyper-V
+  win_feature: name='Hyper-V' state=present include_sub_features=True include_management_tools=True
+
+## PowerShell: Install-WindowsFeature -Name Hyper-V -IncludeAllSubFeature -IncludeManagementTools

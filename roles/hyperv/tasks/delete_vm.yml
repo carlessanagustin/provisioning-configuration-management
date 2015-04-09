@@ -1,0 +1,11 @@
+---
+- name:  HYPERV Stop VM
+  raw: powershell {{ stop_vm }}
+  
+- name:  HYPERV Delete old VMs
+  raw: powershell {{ remove_vm }}
+  ignore_errors: yes
+
+- name:  HYPERV Delete old VMs folder
+  raw: powershell {{ remove_folder }}
+  ignore_errors: yes

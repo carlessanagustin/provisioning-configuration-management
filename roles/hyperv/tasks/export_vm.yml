@@ -1,0 +1,6 @@
+---
+- name: Stop VM
+  raw: powershell {{ stop_vm }}
+  
+- name: Export VM
+  raw: powershell {{ export_vm }}

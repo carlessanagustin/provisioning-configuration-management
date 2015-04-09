@@ -1,0 +1,6 @@
+---
+- name: Restore VM
+  raw: powershell {{ restore_vm }}
+
+- name: Start VM
+  raw: powershell {{ start_vm }}

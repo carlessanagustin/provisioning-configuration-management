@@ -1,0 +1,10 @@
+---
+- name: Import VM
+  raw: powershell {{ import_vm }}
+  
+- name: Start VM
+  raw: powershell {{ start_vm }}
+  
+- name: Pause for X seconds
+  pause: seconds={{ delay }}
+  
