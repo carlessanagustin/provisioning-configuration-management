@@ -3,3 +3,13 @@ ansible_ssh_user: Administrator
 ansible_ssh_pass: XXXXXXXXXXXX
 ansible_ssh_port: 5986
 ansible_connection: winrm
+
+import_box_as: "ubuntu_base"
+export_box_as: "ubuntu_base_MySoft"
+
+import_path: "C:/imports/ubuntu_base/Virtual Machines/XXXX-XXXX-XXXX.XML"
+export_path: "C:/exports"
+
+hyperv_computername: "XXXXXX"
+hyperv_path: "C:/HyperV/Virtual Hard Disks/ubuntu_base_temp"
+hyperv_file: "ubuntu-12-04.vhd"
