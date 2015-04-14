@@ -1,6 +1,0 @@
----
-- include: common.yml tags=common
-#- include: ansible.yml tags=ansible
-#- include: samba.yml tags=samba
-#- include: ELK.yml tags=elk
-#- include: nagios.yml tags=nagios

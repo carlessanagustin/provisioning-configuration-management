@@ -2,6 +2,8 @@
 
 This is my personal repo of ansible playbooks, enjoy!
 
+NOT TESTED, PLEASE BE CAREFUL.
+
 # Usage:
 
 ## ansible-playbook command

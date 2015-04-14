@@ -1,10 +1,20 @@
 ---
-- name: Import VM
-  raw: powershell {{ import_vm }}
+- debug: msg="Get-ChildItem -name -include '*.xml' -Path '{{ path }}'"
+  register: out
+- name:  Get XML filename
+  raw: powershell {{ out.msg }}
+  register: file_name
+
+- debug: msg="Import-VM -Verbose -GenerateNewId -Copy -ComputerName {{ hyperv_computername }} -Path '{{ import_path }}' -VhdDestinationPath '{{ hyperv_path }}'"
+  register: out
+- name:   Import VM
+  raw: powershell {{ out.msg }}
+
+- debug: msg="Start-vm -ComputerName {{ hyperv_computername }} -Name {{ import_box_as }}"
+  register: out
+- name:   Start VM
+  raw: powershell {{ out.msg }}
   
-- name: Start VM
-  raw: powershell {{ start_vm }}
-  
-- name: Pause for X seconds
+- name:   Pause for X seconds
   pause: seconds={{ delay }}
-  
+  tags: delay

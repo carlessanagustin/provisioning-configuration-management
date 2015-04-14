@@ -3,18 +3,3 @@ ansible_ssh_user: Administrator
 ansible_ssh_pass: XXXXXXXXXXXX
 ansible_ssh_port: 5986
 ansible_connection: winrm
-
-## PowerShell Hyper-V
-import_vm: "Import-VM -Verbose -GenerateNewId -Copy -Path 'C:/ubuntu_base/Virtual Machines/XXX-XXX-XXX-XXX.XML' -VhdDestinationPath 'C:/HyperV/Virtual Hard Disks/ubuntu_base'"
-
-start_vm: "Start-vm -Name ubuntu_base"
-
-stop_vm: "Stop-vm -Name ubuntu_base"
-
-export_vm: "Export-VM -Verbose -Name ubuntu_base -Path 'C:/ubuntu_base_export'"
-
-remove_vm: "Remove-VM -Verbose -Name ubuntu_base -Force"
-
-remove_folder: "Remove-Item -Path 'C:/HyperV/Virtual Hard Disks/ubuntu_base' -Force -Recurse"
-
-restore_vm: 'Restore-VMSnapshot -VMName ubuntu_base -Name "first" -Confirm:$false'

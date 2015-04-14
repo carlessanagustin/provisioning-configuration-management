@@ -1,5 +1,5 @@
 ---
-- include: install_hyperv.yml tags=install_hyperv
 - include: import_start.yml tags=import_start
-- include: export_vm.yml tags=export_vm
-- include: delete_vm.yml tags=delete_vm
+- include: compress_linux.yml tags=compress_linux
+- include: export_vm.yml tags=export_vm_pacenter
+- include: delete_vm.yml tags=delete_vm_miimetiq

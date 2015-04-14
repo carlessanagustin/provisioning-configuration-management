@@ -1,6 +1,6 @@
 ---
-- name: Restore VM
-  raw: powershell {{ restore_vm }}
-
-- name: Start VM
-  raw: powershell {{ start_vm }}
+- debug: msg="Restore-VMSnapshot -ComputerName {{ computername }} -VMName {{ vmname }} -Name "{{ name }}" -Confirm:$false"
+  register: out
+- name:  Restore VM
+  raw: powershell {{ out.msg }}
+  

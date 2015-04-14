@@ -22,4 +22,12 @@ base_packages:
    - rsync
    - default-jdk
    - sqlite3
-   - ntp
+   - ntp  
+   - sysstat
+   - dstat
+   - screen
+   - telnet
+   - traceroute
+   - mtr
+   - lsof
+   - fail2ban
