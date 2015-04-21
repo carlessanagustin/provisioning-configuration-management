@@ -2,7 +2,7 @@
 - name: apt-get install req_packages
   sudo: yes
   sudo_user: root
-  apt: package={{ item }} state=latest
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
   with_items: req_packages
 
 - name: Update the unmount order to prevent CIFS from hanging during shutdown 1/2

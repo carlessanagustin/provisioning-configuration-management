@@ -2,7 +2,7 @@
 - name: aptget update if needed
   sudo: yes
   sudo_user: root
-  apt: update_cache=yes
+  apt: update_cache=yes cache_valid_time=3600
 
 - name: aptget upgrade if needed
   sudo: yes
@@ -32,7 +32,7 @@
 - name: apt-get install base_packages
   sudo: yes
   sudo_user: root
-  apt: package={{ item }} state=latest
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
   with_items: base_packages
   ignore_errors: yes
   

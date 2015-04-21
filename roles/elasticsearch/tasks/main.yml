@@ -1,28 +1,23 @@
 - name: apt-get install java
   sudo: yes
   sudo_user: root
-  apt: package={{ item }} state=latest
+  apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600
   with_items: required_packages
 
 - name: install public key
   sudo: yes
   sudo_user: root
-  apt_key: url=https://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+  apt_key: url=https://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present  update_cache=yes cache_valid_time=3600
 
 - name: repo elasticsearch
   sudo: yes
   sudo_user: root
-  apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' state=present
-
-- name: aptget update if needed
-  sudo: yes
-  sudo_user: root
-  apt: update_cache=yes
+  apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' state=present  update_cache=yes cache_valid_time=3600
 
 - name: apt-get install elasticsearch
   sudo: yes
   sudo_user: root
-  apt: package=elasticsearch state=latest
+  apt: name=elasticsearch state=latest  update_cache=yes cache_valid_time=3600
 
 - name: elasticsearch to automatically start during bootup
   sudo: yes

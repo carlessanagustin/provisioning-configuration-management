@@ -26,7 +26,7 @@
 - name: ensure ntp is at the latest version (Debian)
   sudo: yes
   sudo_user: root
-  apt: name=ntp state=latest
+  apt: name=ntp state=latest  update_cache=yes cache_valid_time=3600
   when: ansible_os_family == 'Debian'
   notify:
     - restart ntp
