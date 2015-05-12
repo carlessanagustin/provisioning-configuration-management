@@ -43,7 +43,7 @@
   
 - name: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
   sudo: yes
-  command: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
+  command: cp -rf /etc/nagios3 /vagrant/etc-nagios3
   when: etc_nagios.stat.exists == False
   tags: vagrant
   
@@ -55,7 +55,7 @@
   
 - name: ln -fs /vagrant/etc-nagios3 /etc/nagios3
   sudo: yes
-  file: src=/etc/nagios3 dest=/vagrant/etc-nagios3 state=link
+  file: src=/etc/nagios3 dest=/vagrant/etc-nagios3 state=link force=yes
   when: etc_nagios.stat.exists == False
   tags: vagrant
 
