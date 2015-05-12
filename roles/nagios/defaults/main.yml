@@ -1,0 +1,8 @@
+---
+nagios_pkgs:
+  - nagios3
+  - nagios-nrpe-plugin
+  
+mail_name: "zipi.com"
+mail_type: "'Internet Site'"
+nagiosadmin_pass: "nagios123"

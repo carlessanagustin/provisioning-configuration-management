@@ -1,9 +1,25 @@
 ---
-# UNFINISHED & UNTESTED!
-- name: apt-get install nagios_reqs @ vars
+# debconf-set-selections <<< "postfix postfix/mailname string $MAILNAME"
+# debconf-set-selections <<< "postfix postfix/main_mailer_type string $MAILTYPE"
+# debconf-set-selections <<< "nagios3-cgi nagios3/adminpassword string $PASS"
+# debconf-set-selections <<< "nagios3-cgi nagios3/adminpassword-repeat string $PASS"
+
+- name: Postfix mail server name variable
+  debconf: name=postfix question='postfix/mailname' value={{ mail_name }} vtype='string'
+
+- name: Postfix mail server type variable
+  debconf: name=postfix question='postfix/main_mailer_type' value={{ mail_type }} vtype='string'
+
+- name: Nagios3 nagiosadmin password variable
+  debconf: name=nagios3-cgi question='nagios3/adminpassword' value={{ nagiosadmin_pass }} vtype='string'
+  
+- name: Nagios3 nagiosadmin password variable repeat
+  debconf: name=nagios3-cgi question='nagios3/adminpassword-repeat' value={{ nagiosadmin_pass }} vtype='string'
+
+- name: apt-get install nagios_pkgs
   sudo: yes
   apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
-  with_items: nagios_reqs
+  with_items: nagios_pkgs
   notify:
     - restart apache2
     - restart nagios3
