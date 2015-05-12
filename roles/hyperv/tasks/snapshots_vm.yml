@@ -1,0 +1,20 @@
+---
+- name:  HYPERV Checkpoint-VM
+  raw: powershell "Checkpoint-VM -ComputerName {{ hyperv_computername }} -VMName {{ vm_name }} -SnapshotName '{{ ss_name }}'"
+  tags: create_vmsnapshot
+  
+- name:  HYPERV Rename-VMSnapshot
+  raw: powershell "Rename-VMSnapshot -ComputerName {{ hyperv_computername }} -VMName {{ vm_name }} -Name {{ ss_name }} -NewName {{ new_ss_name }} -Confirm:$false"
+  tags: rename_vmsnapshot
+
+- name:  HYPERV Restore-VMSnapshot
+  raw: powershell "Restore-VMSnapshot -ComputerName {{ hyperv_computername }} -VMName {{ vm_name }} -Name {{ ss_name }}"
+  tags: restore_vmsnapshot
+
+- name:  HYPERV Export-VMSnapshot
+  raw: powershell "Export-VMSnapshot –Name '{{ ss_name }}' –VMName {{ vm_name }} –Path '{{ export_path }}'"
+  tags: export_vmsnapshot
+
+- name:  HYPERV Remove-VMSnapshot
+  raw: powershell "Remove-VMSnapshot -ComputerName {{ hyperv_computername }} -VMName {{ vm_name }} -Name {{ ss_name }} -Confirm:$false"
+  tags: remove_vmsnapshot

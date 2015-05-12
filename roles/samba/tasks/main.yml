@@ -1,33 +1,27 @@
 ---
 - name: apt-get install req_packages
   sudo: yes
-  sudo_user: root
   apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600
   with_items: req_packages
 
 - name: Update the unmount order to prevent CIFS from hanging during shutdown 1/2
   sudo: yes
-  sudo_user: root
   command: update-rc.d -f umountnfs.sh remove
 
 - name: Update the unmount order to prevent CIFS from hanging during shutdown 2/2
   sudo: yes
-  sudo_user: root
   command: update-rc.d umountnfs.sh stop 15 0 6 .
 
 - name: add server line in hosts file
   sudo: yes
-  sudo_user: root
   lineinfile: dest=/etc/hosts line="{{ item }}" owner=root group=root mode=0644
   with_items: etc_hosts
 
 - name: add shared folder line into fstab file
   sudo: yes
-  sudo_user: root
   lineinfile: dest=/etc/fstab line="{{ item }}" owner=root group=root mode=0644
   with_items: etc_fstab
 
 - name: mount shared folders
   sudo: yes
-  sudo_user: root
   command: mount -a

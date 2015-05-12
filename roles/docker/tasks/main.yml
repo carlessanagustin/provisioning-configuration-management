@@ -1,0 +1,13 @@
+---
+- name: Install docker
+  sudo: yes
+  shell: wget -qO- https://get.docker.com/ | sh
+
+- name: Create docker group
+  sudo: yes
+  group: name=docker  state=present
+  
+- name: Add user to docker group
+  sudo: yes
+  user: name={{ item }} group=docker append=yes
+  with_items: user_to_docker

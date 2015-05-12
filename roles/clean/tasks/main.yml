@@ -1,0 +1,18 @@
+---
+- name: CLEAN Copy clean script 
+  sudo: yes
+  sudo_user: root
+  copy: src={{ base_files_path }}/utils/clean.sh dest={{ clean_file }} mode=0755
+  tags: clean
+
+- name: CLEAN Convert DOS to Unix
+  sudo: yes
+  sudo_user: root
+  command: fromdos -d {{ clean_file }}
+  tags: clean
+  
+- name: CLEAN Run clean script
+  sudo: yes
+  sudo_user: root
+  shell: "{{ clean_file }}"
+  tags: clean

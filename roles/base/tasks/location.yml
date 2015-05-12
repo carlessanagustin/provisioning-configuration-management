@@ -1,12 +1,10 @@
 ---
 - name: add line to file 1
   sudo: yes
-  sudo_user: root
   lineinfile: dest=/etc/default/locale line='LC_ALL="en_GB.UTF-8"'
 
 - name: add line to file 2
   sudo: yes
-  sudo_user: root
   lineinfile: dest=/etc/default/locale line='LANG="en_GB.UTF-8"'
 
 - name: create /home/vagrant/.bash_profile
@@ -16,7 +14,6 @@
 
 - name: Specify valid locale
   sudo: yes
-  sudo_user: root
   command: locale-gen en_GB.UTF-8
 
 - name: add line to file 3

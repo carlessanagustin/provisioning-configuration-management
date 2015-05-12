@@ -1,7 +1,0 @@
----
-- hosts: all
-  roles:
-    - { role: base, tags: base }
-    - { role: ansible, tags: ansible }
-    - { role: samba, tags: samba }
-    - { role: nagios, tags: nagios }

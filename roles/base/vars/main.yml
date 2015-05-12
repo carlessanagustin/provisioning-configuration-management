@@ -1,8 +1,4 @@
 ---
-#collectd_package: collectd-5.4.1
-#elasticsearch_package: elasticsearch-1.1.1
-#logstash_package: logstash-1.4.1
-
 base_packages:
    - git
    - curl
@@ -31,3 +27,4 @@ base_packages:
    - mtr
    - lsof
    - fail2ban
+   - wget

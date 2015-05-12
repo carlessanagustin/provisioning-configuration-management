@@ -1,27 +1,14 @@
 ---
 - name: add ansible repo
   sudo: yes
-  sudo_user: root
   apt_repository: repo={{ ansible_repo }}  update_cache=yes cache_valid_time=3600
 
 - name: apt-get install ansible_req_packages
   sudo: yes
-  sudo_user: root
   apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
   with_items: ansible_req_packages
 
 - name: install pip_packages
   sudo: yes
-  sudo_user: root
   pip: name={{ item }} state=latest
   with_items: pip_packages
-
-## not working
-#- name: Install pywinrm (windows ssh like)
-#  sudo: yes
-#  sudo_user: root
-#  pip: name={{ pywinrm_url }}
-#  register: output
-#
-#- name: print output
-#  debug: var=output

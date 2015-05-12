@@ -1,33 +1,22 @@
 ---
-- debug: msg="Stop-vm -ComputerName {{ hyperv_computername }} -Name {{ export_box_as }}"
-  register: out
-- name:   Stop export VM
-  raw: powershell {{ out.msg }}
+- name: HYPERV Stop-vm
+  raw: powershell "Stop-vm -ComputerName {{ hyperv_computername }} -Name {{ export_box_as }}"
   ignore_errors: yes
   tags: deploy
   
-- debug: msg="Remove-VM -Verbose -ComputerName {{ hyperv_computername }} -Force -Name {{ export_box_as }}"
-  register: out
-- name:   Delete old export VMs
-  raw: powershell {{ out.msg }}
+- name: HYPERV Remove-VM export
+  raw: powershell "Remove-VM -Verbose -ComputerName {{ hyperv_computername }} -Force -Name {{ export_box_as }}"
   ignore_errors: yes
 
-- debug: msg="Stop-vm -ComputerName {{ hyperv_computername }} -Name {{ import_box_as }}"
-  register: out
-- name:   Stop import VM
-  raw: powershell {{ out.msg }}
+- name: HYPERV Stop-vm import
+  raw: powershell "Stop-vm -ComputerName {{ hyperv_computername }} -Name {{ import_box_as }}"
   ignore_errors: yes
   tags: del_import_vm
   
-- debug: msg="Remove-VM -Verbose -ComputerName {{ hyperv_computername }} -Force -Name {{ import_box_as }}"
-  register: out
-- name:   Delete old import VMs
-  raw: powershell {{ out.msg }}
+- name: HYPERV Remove-VM import
+  raw: powershell "Remove-VM -Verbose -ComputerName {{ hyperv_computername }} -Force -Name {{ import_box_as }}"
   ignore_errors: yes
   tags: del_import_vm
 
-- debug: msg="Remove-Item -Force -Recurse -Path '{{ hyperv_path }}'"
-  register: out
-- name:   Delete old VMs folder
-  raw: powershell {{ out.msg }}
-  
+- name: HYPERV Remove-Item
+  raw: powershell "Remove-Item -Force -Recurse -Path '{{ hyperv_path }}'"

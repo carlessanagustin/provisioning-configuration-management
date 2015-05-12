@@ -1,22 +1,17 @@
 ---
-- debug: msg="Rename-VM -ComputerName {{ hyperv_computername }} -Name {{ import_box_as }} -NewName {{ export_box_as }}"
-  register: out
-- name:   Rename VM
-  raw: powershell {{ out.msg }}
+- name: HYPERV Rename-VM
+  raw: powershell "Rename-VM -ComputerName {{ hyperv_computername }} -Name {{ import_box_as }} -NewName {{ export_box_as }}"
   tags: rename_vm
+
+- name: HYPERV Stop-vm
+  raw: powershell "Stop-vm -ComputerName {{ hyperv_computername }} -Name {{ export_box_as }}"
+  tags: stop_vm
+
+- name: HYPERV Export-VM
+  raw: powershell "Export-VM -Verbose -ComputerName {{ hyperv_computername }} -Name {{ export_box_as }} -Path '{{ export_path }}'"
+  tags: export_vm
+
+- name: HYPERV Optimize-VHD
+  raw: powershell "Optimize-VHD -Verbose -ComputerName {{ hyperv_computername }} -Mode Full -Path '{{ export_path }}/{{ export_box_as }}/Virtual Hard Disks/{{ hyperv_file }}'"
+  tags: optimize_vm
  
-- debug: msg="Stop-vm -ComputerName {{ hyperv_computername }} -Name {{ export_box_as }}"
-  register: out
-- name:   Stop VM
-  raw: powershell {{ out.msg }}
-
-- debug: msg="Export-VM -Verbose -ComputerName {{ hyperv_computername }} -Name {{ export_box_as }} -Path '{{ export_path }}'"
-  register: out
-- name:   Export VM
-  raw: powershell {{ out.msg }}
-
-- debug: msg="Optimize-VHD -Verbose -ComputerName {{ hyperv_computername }} -Mode Full -Path '{{ export_path }}/{{ export_box_as }}/Virtual Hard Disks/{{ hyperv_file }}'"
-  register: out
-- name:   Compact VM
-  raw: powershell {{ out.msg }}
-  

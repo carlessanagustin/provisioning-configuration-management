@@ -1,10 +1,8 @@
 ---
 - name: install logstash
   sudo: yes
-  sudo_user: root
   apt: deb=/vagrant/logstash_1.4.2-1-2c0f5a1_all.deb update_cache=yes cache_valid_time=3600
 
 - name: install logstash contrib
   sudo: yes
-  sudo_user: root
   apt: deb=/vagrant/logstash-contrib_1.4.2-1-efd53ef_all.deb update_cache=yes cache_valid_time=3600

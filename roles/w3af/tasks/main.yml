@@ -1,19 +1,23 @@
 ---
+# UNFINISHED & UNTESTED!
 # following instructions http://docs.w3af.org/en/latest/install.html
 - name: apt-get install w3af_reqs
   sudo: yes
-  sudo_user: root
   apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
   with_items: w3af_reqs
 
 - name: upgrade pip
+  sudo: yes
   pip: name=pip state=latest
 
 - name: clone repo
+  sudo: yes
   git: repo={{ repo }} dest={{ destination }}
 
 - name: run command
+  sudo: yes
   command: {{ destination }}/w3af_console
 
 - name: run script
+  sudo: yes
   shell: /tmp/w3af_dependency_install.sh

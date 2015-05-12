@@ -1,11 +1,9 @@
 ---
 - name: restart apache2
   sudo: yes
-  sudo_user: root
   service: name=apache2 state=restarted
 
 - name: restart nagios3
   sudo: yes
-  sudo_user: root
   service: name=nagios3 state=restarted
 

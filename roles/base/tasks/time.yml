@@ -1,31 +1,15 @@
 ---
-- name: OS specific vars
-  include_vars: "{{ ansible_os_family }}.yml"
-  
 - name: set timezone to UTC
   sudo: yes
-  sudo_user: root
-  shell: "{{ item }}"
-  with_items:
-    - echo "Etc/UTC" | tee /etc/timezone
+  shell: echo "{{ ntp_timezone }}" | tee /etc/timezone
 
 - name: reconfigure (Debian)
   sudo: yes
-  sudo_user: root
   shell: dpkg-reconfigure --frontend noninteractive tzdata
   when: ansible_os_family == 'Debian'
-    
-- name: ensure ntp is at the latest version (RedHat)
-  sudo: yes
-  sudo_user: root
-  yum: name=ntp state=latest
-  when: ansible_os_family == 'RedHat'
-  notify:
-    - restart ntp
 
-- name: ensure ntp is at the latest version (Debian)
+- name: Ensure NTP is at the latest version
   sudo: yes
-  sudo_user: root
   apt: name=ntp state=latest  update_cache=yes cache_valid_time=3600
   when: ansible_os_family == 'Debian'
   notify:
@@ -33,18 +17,15 @@
     
 - name: Ensure NTP is running and enabled at system start
   sudo: yes
-  sudo_user: root
   service: name={{ ntp_daemon }} state=started enabled=yes
   when: ntp_enabled
 
 - name: Ensure NTP is stopped and disabled at system start
   sudo: yes
-  sudo_user: root
   service: name={{ ntp_daemon }} state=stopped enabled=no
   when: not ntp_enabled
   
-- name: Add spain daily cron job
+- name: Add Spain daily cron job
   sudo: yes
-  sudo_user: root
   lineinfile: dest=/etc/cron.daily/ntpdate line='ntpdate es.pool.ntp.org' owner=root group=root mode=0755 create=yes
   when: ansible_os_family == 'Debian'

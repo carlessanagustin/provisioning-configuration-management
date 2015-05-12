@@ -1,2 +1,12 @@
 ---
 delay: 60
+
+import_box_as: ""
+export_box_as: ""
+
+import_path: ""
+export_path: ""
+
+hyperv_computername: ""
+hyperv_path: ""
+hyperv_file: ""

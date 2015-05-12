@@ -2,9 +2,4 @@
 # ntp vars
 ntp_enabled: true
 ntp_timezone: Etc/UTC
-
-# usermanagement (um) vars
-um_usergroup:
-   - deploy
-   - admin
-um_sudoers: '%admin ALL=(ALL) NOPASSWD:ALL'
+ntp_daemon: ntp
