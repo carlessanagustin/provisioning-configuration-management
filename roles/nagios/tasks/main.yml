@@ -32,31 +32,31 @@
 - name: service nagios3 stop
   sudo: yes
   service: name=nagios3 state=stopped
-  when: etc_nagios.stat.exists == True
+  when: etc_nagios.stat.exists == False
   tags: vagrant
   
 - name: mkdir /vagrant/etc-nagios3
   sudo: yes
   file: path=/vagrant/etc-nagios3 state=directory
-  when: etc_nagios.stat.exists == True
+  when: etc_nagios.stat.exists == False
   tags: vagrant
   
 - name: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
   sudo: yes
   command: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
-  when: etc_nagios.stat.exists == True
+  when: etc_nagios.stat.exists == False
   tags: vagrant
   
 - name: rm -rf /etc/nagios3
   sudo: yes
   file: path=/etc/nagios3 state=absent 
-  when: etc_nagios.stat.exists == True
+  when: etc_nagios.stat.exists == False
   tags: vagrant
   
 - name: ln -fs /vagrant/etc-nagios3 /etc/nagios3
   sudo: yes
   file: src=/etc/nagios3 dest=/vagrant/etc-nagios3 state=link
-  when: etc_nagios.stat.exists == True
+  when: etc_nagios.stat.exists == False
   tags: vagrant
 
 - name: chmod g+x /var/lib/nagios3/rw
