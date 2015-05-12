@@ -69,6 +69,7 @@
   
 - name: usermod -a -G nagios www-data
   sudo: yes
+  user: name=www-data group=nagios append=yes
   tags: vagrant
   
 - name: update-rc.d apache2 defaults
