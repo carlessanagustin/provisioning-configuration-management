@@ -27,6 +27,8 @@
   local_action: stat path=etc-nagios3
   register: etc_nagios
   
+- debug: etc_nagios
+  
 - name: service nagios3 stop
   sudo: yes
   service: name=nagios3 state=stopped
@@ -57,11 +59,6 @@
   when: etc_nagios.stat.exists == True
   tags: vagrant
 
-- name: service nagios3 start
-  sudo: yes
-  service: name=nagios3 state=started enabled=yes
-  tags: vagrant
-
 - name: chmod g+x /var/lib/nagios3/rw
   sudo: yes
   file: path=/var/lib/nagios3/rw state=directory mode="g+x"
@@ -72,7 +69,12 @@
   user: name=www-data group=nagios append=yes
   tags: vagrant
   
-- name: update-rc.d apache2 defaults
+- name: service nagios3 enable & start
+  sudo: yes
+  service: name=nagios3 state=started enabled=yes
+  tags: vagrant
+  
+- name: service apache2 enable & start
   sudo: yes
   service: name=apache2 state=started enabled=yes
   tags: vagrant
