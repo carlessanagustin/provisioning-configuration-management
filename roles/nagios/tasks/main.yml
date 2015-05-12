@@ -1,9 +1,4 @@
 ---
-# debconf-set-selections <<< "postfix postfix/mailname string $MAILNAME"
-# debconf-set-selections <<< "postfix postfix/main_mailer_type string $MAILTYPE"
-# debconf-set-selections <<< "nagios3-cgi nagios3/adminpassword string $PASS"
-# debconf-set-selections <<< "nagios3-cgi nagios3/adminpassword-repeat string $PASS"
-
 - name: Postfix mail server name variable
   sudo: yes
   debconf: name=postfix question='postfix/mailname' value={{ mail_name }} vtype='string'
@@ -20,10 +15,67 @@
   sudo: yes
   debconf: name=nagios3-cgi question='nagios3/adminpassword-repeat' value={{ nagiosadmin_pass }} vtype='string'
 
-- name: apt-get install nagios_pkgs @ defaults
+- name: apt-get install nagios_pkgs
   sudo: yes
   apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
   with_items: nagios_pkgs
   notify:
     - restart apache2
     - restart nagios3
+
+- name: does etc-nagios3 exist?
+  local_action: stat path=etc-nagios3
+  register: etc_nagios
+  
+- name: service nagios3 stop
+  sudo: yes
+  service: name=nagios3 state=stopped
+  when: etc_nagios.stat.exists == True
+  tags: vagrant
+  
+- name: mkdir /vagrant/etc-nagios3
+  sudo: yes
+  file: path=/vagrant/etc-nagios3 state=directory
+  when: etc_nagios.stat.exists == True
+  tags: vagrant
+  
+- name: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
+  sudo: yes
+  command: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
+  when: etc_nagios.stat.exists == True
+  tags: vagrant
+  
+- name: rm -rf /etc/nagios3
+  sudo: yes
+  file: path=/etc/nagios3 state=absent 
+  when: etc_nagios.stat.exists == True
+  tags: vagrant
+  
+- name: ln -fs /vagrant/etc-nagios3 /etc/nagios3
+  sudo: yes
+  file: src=/etc/nagios3 dest=/vagrant/etc-nagios3 state=link
+  when: etc_nagios.stat.exists == True
+  tags: vagrant
+
+- name: service nagios3 start
+  sudo: yes
+  service: name=nagios3 state=started enabled=yes
+  tags: vagrant
+
+- name: chmod g+x /var/lib/nagios3/rw
+  sudo: yes
+  file: path=/var/lib/nagios3/rw state=directory mode="g+x"
+  tags: vagrant
+  
+- name: usermod -a -G nagios www-data
+  sudo: yes
+  tags: vagrant
+  
+- name: update-rc.d apache2 defaults
+  sudo: yes
+  service: name=apache2 state=started enabled=yes
+  tags: vagrant
+  
+  
+  
+
