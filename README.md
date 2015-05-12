@@ -6,8 +6,13 @@ NOT TESTED, PLEASE BE CAREFUL.
 
 # Usage:
 
+## Vagrant instructions
+
+* change install.yml as needed
+* run: vagrant up --provision
+
 ## ansible-playbook command
 
-* full line
+* run: ansible-playbook install.yml -i hosts/all -vvv --tags=common --skip-tags=nagios
 
-        ansible-playbook install.yml -i hosts/all -vvv --tags=common,elk --skip-tags=nagios
+--  by carlessanagustin.com --
