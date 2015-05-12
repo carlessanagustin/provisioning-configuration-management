@@ -24,7 +24,7 @@
     - restart nagios3
 
 - name: does etc-nagios3 exist?
-  local_action: stat path=etc-nagios3
+  local_action: stat path=.etc-nagios3
   register: etc_nagios
   
 - debug: etc_nagios
