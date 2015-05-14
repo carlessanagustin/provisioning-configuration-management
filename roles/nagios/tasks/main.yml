@@ -22,41 +22,30 @@
   notify:
     - restart apache2
     - restart nagios3
-
-- name: does etc-nagios3 exist?
-  local_action: stat path=.etc-nagios3
-  register: etc_nagios
-  
-- debug: etc_nagios
   
 - name: service nagios3 stop
   sudo: yes
   service: name=nagios3 state=stopped
-  when: etc_nagios.stat.exists == False
   tags: vagrant
   
 - name: mkdir /vagrant/etc-nagios3
   sudo: yes
   file: path=/vagrant/etc-nagios3 state=directory
-  when: etc_nagios.stat.exists == False
   tags: vagrant
   
 - name: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
   sudo: yes
-  command: cp -rf /etc/nagios3 /vagrant/etc-nagios3
-  when: etc_nagios.stat.exists == False
+  shell: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
   tags: vagrant
   
 - name: rm -rf /etc/nagios3
   sudo: yes
   file: path=/etc/nagios3 state=absent 
-  when: etc_nagios.stat.exists == False
   tags: vagrant
   
 - name: ln -fs /vagrant/etc-nagios3 /etc/nagios3
   sudo: yes
-  file: src=/etc/nagios3 dest=/vagrant/etc-nagios3 state=link force=yes
-  when: etc_nagios.stat.exists == False
+  file: src=/vagrant/etc-nagios3 dest=/etc/nagios3 state=link force=yes
   tags: vagrant
 
 - name: chmod g+x /var/lib/nagios3/rw
@@ -79,6 +68,3 @@
   service: name=apache2 state=started enabled=yes
   tags: vagrant
   
-  
-  
-

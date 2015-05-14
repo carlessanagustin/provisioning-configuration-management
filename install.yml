@@ -2,5 +2,5 @@
 - hosts: all
   roles:
     - { role: base, tags: base }
-    - { role: docker, tags: docker }
-    #- { role: nagios, tags: nagios }
+    #- { role: docker, tags: docker }
+    - { role: nagios, tags: nagios }
