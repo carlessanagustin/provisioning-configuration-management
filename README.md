@@ -6,8 +6,8 @@ This is my personal repo of ansible playbooks, enjoy!
 
 ## Vagrant instructions
 
-* change: install.yml
-* run: vagrant up --provision
+1. change: install.yml (roles + vars)
+2. run: vagrant up --provision
 
 ## For non-Vagrant
 
