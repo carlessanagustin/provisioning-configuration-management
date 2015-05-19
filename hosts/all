@@ -10,6 +10,12 @@ ansible_ssh_port=2222
 [vagrant]
 vagrant
 
+[vagrant:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant
+ansible_ssh_port=2222
+vagrant_enable=True
+
 ; add windows to /etc/hosts
 [windows_host]
 windows

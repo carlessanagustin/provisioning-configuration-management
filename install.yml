@@ -2,5 +2,9 @@
 - hosts: all
   roles:
     - { role: base, tags: base }
-    #- { role: docker, tags: docker }
-    - { role: nagios, tags: nagios }
+    - { role: docker, tags: docker }
+    #- { role: nagios, tags: nagios }
+    #- { role: elasticsearch, tags: elasticsearch }
+    #- { role: logstash, tags: logstash }
+    #- { role: kibana, tags: kibana }
+    #- { role: samba, tags: samba }

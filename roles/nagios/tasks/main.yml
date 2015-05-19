@@ -26,45 +26,54 @@
 - name: service nagios3 stop
   sudo: yes
   service: name=nagios3 state=stopped
+  when: vagrant_enable == True
   tags: vagrant
   
 - name: mkdir /vagrant/etc-nagios3
   sudo: yes
   file: path=/vagrant/etc-nagios3 state=directory
+  when: vagrant_enable == True
   tags: vagrant
   
 - name: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
   sudo: yes
   shell: cp -rf /etc/nagios3/* /vagrant/etc-nagios3
+  when: vagrant_enable == True
   tags: vagrant
   
 - name: rm -rf /etc/nagios3
   sudo: yes
-  file: path=/etc/nagios3 state=absent 
+  file: path=/etc/nagios3 state=absent
+  when: vagrant_enable == True
   tags: vagrant
   
 - name: ln -fs /vagrant/etc-nagios3 /etc/nagios3
   sudo: yes
   file: src=/vagrant/etc-nagios3 dest=/etc/nagios3 state=link force=yes
+  when: vagrant_enable == True
   tags: vagrant
 
 - name: chmod g+x /var/lib/nagios3/rw
   sudo: yes
   file: path=/var/lib/nagios3/rw state=directory mode="g+x"
+  when: vagrant_enable == True
   tags: vagrant
   
 - name: usermod -a -G nagios www-data
   sudo: yes
   user: name=www-data group=nagios append=yes
+  when: vagrant_enable == True
   tags: vagrant
   
 - name: service nagios3 enable & start
   sudo: yes
   service: name=nagios3 state=started enabled=yes
+  when: vagrant_enable == True
   tags: vagrant
   
 - name: service apache2 enable & start
   sudo: yes
   service: name=apache2 state=started enabled=yes
+  when: vagrant_enable == True
   tags: vagrant
   

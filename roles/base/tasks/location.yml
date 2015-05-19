@@ -9,8 +9,8 @@
 
 - name: create /home/vagrant/.bash_profile
   command: touch /home/vagrant/.bash_profile
-  tags:
-    - vagrant
+  when: vagrant_enable == True
+  tags: vagrant
 
 - name: Specify valid locale
   sudo: yes
@@ -18,10 +18,10 @@
 
 - name: add line to file 3
   lineinfile: dest=/home/vagrant/.bash_profile line='LC_ALL="en_GB.UTF-8"'
-  tags:
-    - vagrant
+  when: vagrant_enable == True
+  tags: vagrant
 
 - name: add line to file 4
   lineinfile: dest=/home/vagrant/.bash_profile line='LANG="en_GB.UTF-8"'
-  tags:
-    - vagrant
+  when: vagrant_enable == True
+  tags: vagrant

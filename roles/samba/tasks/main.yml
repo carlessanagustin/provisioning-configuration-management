@@ -24,4 +24,4 @@
 
 - name: mount shared folders
   sudo: yes
-  command: mount -a
+  shell: mount -a

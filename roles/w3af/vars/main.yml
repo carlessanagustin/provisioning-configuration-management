@@ -1,7 +1,0 @@
----
-w3af_reqs:
-  - git
-  - python-pip
-
-repo: https://github.com/andresriancho/w3af.git
-destination: /vagrant/w3af

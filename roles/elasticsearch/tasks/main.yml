@@ -1,5 +1,4 @@
 ---
-# UNFINISHED & UNTESTED!
 - name: apt-get install java
   sudo: yes
   apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600
@@ -7,11 +6,11 @@
 
 - name: install public key
   sudo: yes
-  apt_key: url=https://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present  update_cache=yes cache_valid_time=3600
+  apt_key: url=https://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
 
 - name: repo elasticsearch
   sudo: yes
-  apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' state=present  update_cache=yes cache_valid_time=3600
+  apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' state=present update_cache=yes
 
 - name: apt-get install elasticsearch
   sudo: yes
