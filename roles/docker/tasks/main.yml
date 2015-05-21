@@ -11,3 +11,9 @@
   sudo: yes
   user: name={{ item }} group=docker append=yes
   with_items: user_to_docker
+
+- name: apt-get install docker_packages
+  sudo: yes
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
+  with_items: docker_packages
+  ignore_errors: yes

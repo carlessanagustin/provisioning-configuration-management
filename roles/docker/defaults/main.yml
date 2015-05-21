@@ -1,2 +1,4 @@
 ---
 user_to_docker: vagrant
+docker_packages:
+  - bridge-utils
