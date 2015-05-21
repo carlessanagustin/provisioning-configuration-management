@@ -3,7 +3,12 @@
 
 Vagrant.configure("2") do |config|
  
-  config.vm.provider "virtualbox"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 512
+    vb.cpus = 1
+    #vb.gui = true
+  end
+    
   config.vm.boot_timeout = 60
  
   config.vm.define "zipi" do |zipi|
