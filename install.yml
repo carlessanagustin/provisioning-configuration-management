@@ -3,6 +3,7 @@
   roles:
     - { role: base, tags: base }
     - { role: docker, tags: docker }
+    - { role: ansible, tags: ansible }
     #- { role: nagios, tags: nagios }
     #- { role: elasticsearch, tags: elasticsearch }
     #- { role: logstash, tags: logstash }

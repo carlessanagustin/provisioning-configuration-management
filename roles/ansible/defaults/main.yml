@@ -1,7 +1,4 @@
 ---
-# command: pip install -e git+https://github.com/diyan/pywinrm.git#egg=pywinrm
-pywinrm_url: 'git+https://github.com/diyan/pywinrm.git#egg=pywinrm'
-
 ansible_repo: 'ppa:ansible/ansible'
 ansible_req_packages:
    - software-properties-common
@@ -14,3 +11,4 @@ ansible_req_packages:
    
 pip_packages:
    - pywinrm
+   - docker-py
