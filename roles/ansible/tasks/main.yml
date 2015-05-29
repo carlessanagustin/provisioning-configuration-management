@@ -1,7 +1,7 @@
 ---
 - name: add ansible repo
   sudo: yes
-  apt_repository: repo={{ ansible_repo }}  update_cache=yes cache_valid_time=3600
+  apt_repository: repo={{ ansible_repo }}  update_cache=yes
 
 - name: apt-get install ansible_req_packages
   sudo: yes
