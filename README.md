@@ -6,11 +6,13 @@ This is my personal repo of ansible playbooks, enjoy!
 
 ## Vagrant instructions
 
-1. change: install.yml (roles + vars)
-2. run: vagrant up --provision
+1. git clone
+2. change: provision/install.yml
+3. run: vagrant up --provision
 
-## For non-Vagrant
+## Non-Vagrant instructions
 
-* run: ansible-playbook install.yml -i hosts/all -vvvv --skip-tags=vagrant
+1. change: provision/roles
+2. run: provision/ansible-playbook install.yml -i hosts/all -vvvv --skip-tags=vagrant
 
 --  by carlessanagustin.com --

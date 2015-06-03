@@ -9,5 +9,5 @@
     #- { role: logstash, tags: logstash }
     #- { role: kibana, tags: kibana }
     #- { role: samba, tags: samba }
-  vars:
-    vagrant_enable: True
+#  vars:
+#    vagrant_enable: True

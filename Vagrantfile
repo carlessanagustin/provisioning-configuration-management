@@ -31,7 +31,10 @@ Vagrant.configure("2") do |config|
     zipi.vm.network "forwarded_port",  host: 8081, guest: 8080, auto_correct: true
 
     zipi.vm.provision "ansible" do |ansible|
-      ansible.playbook = "install.yml"
+      ansible.playbook = "provision/install.yml"
+      ansible.host_key_checking = false
+      ansible.extra_vars = { ansible_ssh_user: 'vagrant', vagrant_enable: True }
+      ansible.sudo = true
     end
 
   end
