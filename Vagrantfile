@@ -33,8 +33,12 @@ Vagrant.configure("2") do |config|
     zipi.vm.provision "ansible" do |ansible|
       ansible.playbook = "provision/install.yml"
       ansible.host_key_checking = false
-      ansible.extra_vars = { ansible_ssh_user: 'vagrant', vagrant_enable: True }
+      #ansible.tags = ''
+      #ansible.skip_tags = ''
+      ansible.limit = 'vagrant'
       ansible.sudo = true
+      ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
+      
     end
 
   end
