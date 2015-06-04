@@ -32,11 +32,21 @@ Vagrant.configure("2") do |config|
 
     zipi.vm.provision "ansible" do |ansible|
       ansible.playbook = "provision/install.yml"
+      
       ansible.host_key_checking = false
+      ansible.sudo = true
+        
       ansible.tags = ['base', 'docker', 'ansible']
       #ansible.skip_tags = ''
-      ansible.limit = 'vagrant'
-      ansible.sudo = true
+        
+      #ansible.inventory_path = "provision/hosts/all"
+      #ansible.limit = 'vagrant'
+      ansible.groups = {
+        "group1" => ["zipi"],
+        "all_groups:children" => ["group1"],
+        "group1:vars" => { "vagrant_enable" => True }
+      }
+      
       ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
       
     end
