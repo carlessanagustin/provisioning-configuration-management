@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
     zipi.vm.provision "ansible" do |ansible|
       ansible.playbook = "provision/install.yml"
       ansible.host_key_checking = false
-      #ansible.tags = ''
+      ansible.tags = ['base', 'docker', 'ansible']
       #ansible.skip_tags = ''
       ansible.limit = 'vagrant'
       ansible.sudo = true

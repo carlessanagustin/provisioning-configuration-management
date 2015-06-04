@@ -1,23 +1,19 @@
-[machine]
+[vagrant]
 127.0.0.1
 
-[machine:vars]
+[vagrant:vars]
 ansible_ssh_user=vagrant
 ansible_ssh_pass=vagrant
 ansible_ssh_port=2222
 
-; add vagrant to /etc/hosts
-[vagrant]
-vagrant
-
 ; add windows to /etc/hosts
 [windows_host]
 windows
+
 
 ; --- GROUPS ---
 [windows:children]
 windows_host
 
 [linux:children]
-vagrant
 machine
