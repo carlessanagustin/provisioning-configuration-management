@@ -38,16 +38,22 @@ Vagrant.configure("2") do |config|
         
       ansible.tags = ['base', 'docker', 'ansible']
       #ansible.skip_tags = ''
-        
+    
+      # STATIC INVENTORY
       #ansible.inventory_path = "provision/hosts/all"
       #ansible.limit = 'vagrant'
+        
+      # AUTO-GENERATED INVENTORY
       ansible.groups = {
         "group1" => ["zipi"],
         "all_groups:children" => ["group1"],
-        "group1:vars" => { "vagrant_enable" => True }
+        #"group1:vars" => { "vagrant_enable" => true }
       }
       
-      ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
+      ansible.extra_vars = {
+          ansible_ssh_user: 'vagrant',
+          vagrant_enable: true
+          }
       
     end
 
