@@ -17,3 +17,14 @@
   apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
   with_items: docker_packages
   ignore_errors: yes
+
+- name: Install docker-compose
+  sudo: yes
+  shell: curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  tags: docker-compose
+
+- name: Enable docker-compose
+  sudo: yes
+  file: path=/usr/local/bin/docker-compose state=file mode="u+w,g+x,o+x"
+  tags: docker-compose
+  
