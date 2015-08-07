@@ -1,10 +1,10 @@
 # My provisioning scripts
 
-** Use with precaution! This repository is in constant development. I DO NOT ASSUME ANY MISUSE. **
+**Use with precaution! This repository is in constant development. I DO NOT ASSUME ANY MISUSE.**
 
 This is my personal repository of installation shell scripts and ansible playbooks. I use them for teaching purposes as DevOps Coach.
 
-** Please fork, use and comment this repo ;) **
+**Please fork, use and comment this repo ;)**
 
 ## 1. [Ansible](http://www.ansible.com/) Playbooks
 
