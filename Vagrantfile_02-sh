@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+ 
+Vagrant.configure("2") do |config|
+ 
+  config.vm.provider "virtualbox"
+  config.vm.boot_timeout = 60
+ 
+  config.vm.define "zipi" do |zipi|
+    zipi.vm.host_name = "zipi"
+    zipi.vm.box = "ubuntu/trusty64"
+    #zipi.vm.provision :shell, :path => "provision-sh/vagrant-bootstrap-jenkins.sh"
+    zipi.vm.network "private_network", ip: "192.168.32.10", virtualbox__intnet: true, auto_config: true
+    zipi.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+    zipi.vm.network "forwarded_port", guest: 8080, host: 8081, auto_correct: true
+  end
+    
+  config.vm.define "zape" do |zape|
+    zape.vm.host_name = "zape"
+    zape.vm.box = "ubuntu/trusty64"
+    #zape.vm.provision :shell, :path => "provision-sh/vagrant-bootstrap-jenkins-node.sh"
+    zape.vm.network "private_network", ip: "192.168.32.11", virtualbox__intnet: true, auto_config: true
+    zape.vm.network "forwarded_port", guest: 80, host: 8082, auto_correct: true
+    zape.vm.network "forwarded_port", guest: 8080, host: 8083, auto_correct: true
+  end
+end
+ 
