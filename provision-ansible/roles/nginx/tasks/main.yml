@@ -19,4 +19,3 @@
   sudo: yes
   when: force_nginx == True
   notify: Reiniciar servicio Nginx
-  changed_when: True
