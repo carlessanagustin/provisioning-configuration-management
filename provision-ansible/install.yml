@@ -10,6 +10,5 @@
     - { role: logstash, tags: logstash }
     - { role: kibana, tags: kibana }
     - { role: samba, tags: samba }
-    
-#  vars:
-#    vagrant_enable: True
+    - { role: jenkins, tags: jenkins }
+    - { role: nginx, tags: nginx }

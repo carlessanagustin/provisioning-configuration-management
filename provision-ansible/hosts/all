@@ -1,19 +1,30 @@
+; ansible-playbook install.yml -i hosts/all -l aws -t base,jenkins --list-tasks --list-hosts
+;-----------------------------------
+
+[aws]
+52.18.132.251
+
+[aws:vars]
+vagrant_enable=False
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=/Users/carles/.ssh/jenkins-ci.pem
+
 [vagrant]
 127.0.0.1
 
-[vagrant:vars]
-ansible_ssh_user=vagrant
-ansible_ssh_pass=vagrant
-ansible_ssh_port=2222
+; [vagrant:vars]
+; ansible_ssh_user=vagrant
+; ansible_ssh_pass=vagrant
+; ansible_ssh_port=2222
+; vagrant_enable=True
 
 ; add windows to /etc/hosts
 [windows_host]
 windows
-
 
 ; --- GROUPS ---
 [windows:children]
 windows_host
 
 [linux:children]
-machine
+aws

@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: nginx, port_number: 8080, site_name: jenkins, force_nginx: True, config_file: roles/jenkins/templates/jenkins-nginx.j2 }

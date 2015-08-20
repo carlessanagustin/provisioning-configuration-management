@@ -1,0 +1,22 @@
+---
+- name: Instalar Nginx y sus dependencias
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
+  sudo: yes
+  with_items: nginx_packages
+
+- name: Eliminar fichero configuracion defecto de Nginx
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  sudo: yes
+  when: force_nginx == True
+
+- name: Instalar configuracion deseada
+  template: src={{ config_file }} dest=/etc/nginx/sites-available/{{ site_name }} owner=root group=root mode=0644
+  sudo: yes
+  when: force_nginx == True
+  
+- name: Activar nuevo site
+  file: src=/etc/nginx/sites-available/{{ site_name }} dest=/etc/nginx/sites-enabled/{{ site_name }} state=link owner=root group=root
+  sudo: yes
+  when: force_nginx == True
+  notify: Reiniciar servicio Nginx
+  changed_when: True
