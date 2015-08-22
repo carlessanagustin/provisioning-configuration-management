@@ -12,3 +12,9 @@
     - { role: samba, tags: samba }
     - { role: jenkins, tags: jenkins }
     - { role: nginx, tags: nginx }
+
+
+# commands...
+# ansible-playbook install.yml -i hosts/all -l aws -t base,nagios
+#
+# review: --list-tasks --list-hosts -vvvv

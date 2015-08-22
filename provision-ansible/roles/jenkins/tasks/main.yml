@@ -15,3 +15,8 @@
 - name: Iniciar servicio Jenkins
   sudo: yes
   service: name=jenkins state=started enabled=yes
+  
+- name: Añadir usuario jenkins a sudoers
+  sudo: yes
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%jenkins ALL' line='%jenkins ALL=NOPASSWD: ALL' validate='visudo -cf %s'"
+  when: jenkins_sudo == True
