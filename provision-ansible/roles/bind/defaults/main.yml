@@ -1,0 +1,11 @@
+---
+name: bind9
+packages:
+  - bind9
+  - bind9utils
+  - bind9-doc
+
+# task: Restrict to IPv4 mode
+dest_file: /etc/default/bind9
+reg_exp: 'OPTIONS'
+config_line: 'OPTIONS="-4 -u bind"'

@@ -12,6 +12,8 @@
     - { role: samba, tags: samba }
     - { role: jenkins, tags: jenkins }
     - { role: nginx, tags: nginx }
+    - { role: bind, tags: bind }
+    - { role: ssl-cert, tags: ssl-cert }
 
 
 # commands...

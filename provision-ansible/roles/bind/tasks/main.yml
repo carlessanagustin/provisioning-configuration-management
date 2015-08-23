@@ -1,0 +1,13 @@
+---
+- name: Instalar ROLE y sus dependencias
+  sudo: yes
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
+  with_items: packages
+      
+- name: Iniciar servicio ROLE
+  sudo: yes
+  service: name={{ name }} state=restarted enabled=yes
+
+- name: Restrict to IPv4 mode
+  sudo: yes
+  lineinfile: dest={{ dest_file }} regexp='^{{ reg_exp }}' line='{{ config_line }}'

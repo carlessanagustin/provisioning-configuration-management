@@ -1,0 +1,9 @@
+---
+cert_name: default-certificate-name
+
+cert_folder: /etc/pki/tls
+keyout_folder: private
+out_folder: certs
+certs_folders:
+  - "{{ cert_folder }}/{{ keyout_folder }}"
+  - "{{ cert_folder }}/{{ out_folder }}"
