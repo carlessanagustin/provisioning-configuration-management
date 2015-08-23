@@ -1,5 +1,33 @@
 ---
-- name: download kibana 4
-  get_url: url=https://download.elasticsearch.org/kibana/kibana/kibana-4.0.0-beta3.tar.gz dest=/vagrant/kibana-4.0.0-beta3.tar.gz
-  notify:
-    - uncompress kibana
+- name: Download latest ROLE package
+  sudo: yes
+  get_url: url={{ package_url }}{{ name }}-{{ package_version }}{{ package_type }}{{ package_format }} dest={{ dest_folder }}
+
+- name: Uncompress ROLE package
+  sudo: yes
+  unarchive: src={{ dest_folder }}{{ name }}-{{ package_version }}{{ package_type }}{{ package_format }} dest={{ dest_folder }} copy=no
+  
+- name: Symbolic link
+  sudo: yes
+  file: src={{dest_folder}}{{ name }}-{{ package_version }}{{ package_type }} dest={{dest_folder}}{{ name }} state=link
+
+- name: Restrict outside access to ROLE (only localhost allowed)
+  sudo: yes
+  lineinfile: dest={{ dest_folder }}{{ config_file }} regexp='^{{ reg_exp }}' line='{{ config_line }}'
+  when: localhost_only == True
+
+- name: Download latest init.d ROLE file
+  sudo: yes
+  get_url: url={{ initd_url }} dest=/etc/init.d mode=0755
+
+- name: Add to rc.d
+  sudo: yes
+  command: '{{ command_line }}'
+  
+- name: Reiniciar servicio ROLE
+  sudo: yes
+  service: name='{{ name }}4' state=started enabled=yes
+  
+#- name: Instalar apache2-utils
+#  sudo: yes
+#  apt: name=apache2-utils state=latest  update_cache=yes cache_valid_time=3600

@@ -1,3 +1,4 @@
 ---
-- name: uncompress kibana
-  unarchive: src=/Users/carles/Development/vagrant/elasticsearch/kibana-4.0.0-beta3.tar.gz dest=/vagrant/ follow=yes
+# - name: uncompress kibana
+#   unarchive: src=/Users/carles/Development/vagrant/elasticsearch/kibana-4.0.0-beta3.tar.gz dest=/vagrant/ follow=yes
+# 

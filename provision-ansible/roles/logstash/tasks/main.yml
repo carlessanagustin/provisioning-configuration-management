@@ -1,10 +1,22 @@
 ---
-- name: download logstash
-  get_url: url=https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb dest=/vagrant/
-  notify:
-    - install logstash
+- name: Instalar clave pública
+  sudo: yes
+  apt_key: url={{ public_key_url }} state=present
+      
+- name: Añadir URL de repositorio
+  sudo: yes
+  apt_repository: repo='{{ repo_url }}' state=present update_cache=yes
+  
+- name: Instalar ROLE
+  sudo: yes
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
+  with_items: packages
+  
+- name: Copiar templates a etc de ROLE
+  sudo: yes
+  template: src={{ item }} dest={{ template_folder }} owner=root group=root mode=0644
+  with_items: template_files
 
-- name: download logstash contrib
-  get_url: url=https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash-contrib_1.4.2-1-efd53ef_all.deb dest=/vagrant/ 
-  notify:
-    - install logstash contrib
+- name: Reiniciar servicio ROLE
+  sudo: yes
+  service: name='{{ package_name }}' state=restarted enabled=yes

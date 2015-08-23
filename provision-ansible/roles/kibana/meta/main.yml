@@ -1,0 +1,5 @@
+---
+dependencies:
+  - { role: elasticsearch }
+  - { role: logstash }
+#  - { role: nginx }

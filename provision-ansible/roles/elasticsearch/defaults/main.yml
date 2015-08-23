@@ -1,0 +1,9 @@
+---
+packages:
+  - elasticsearch
+package_name: elasticsearch
+public_key_url: http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+repo_url: deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main
+config_file: /etc/elasticsearch/elasticsearch.yml
+config_line: 'network.host: localhost'
+localhost_only: True

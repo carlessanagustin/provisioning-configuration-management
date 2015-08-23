@@ -1,26 +1,23 @@
 ---
-- name: apt-get install java
+- name: Instalar clave pública
   sudo: yes
-  apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600
-  with_items: required_packages
-
-- name: install public key
+  apt_key: url={{ public_key_url }} state=present
+      
+- name: Añadir URL de repositorio
   sudo: yes
-  apt_key: url=https://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+  apt_repository: repo='{{ repo_url }}' state=present update_cache=yes
 
-- name: repo elasticsearch
+- name: Instalar ROLE
   sudo: yes
-  apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' state=present update_cache=yes
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
+  with_items: packages
 
-- name: apt-get install elasticsearch
+- name: Restrict outside access to ROLE (only localhost allowed)
   sudo: yes
-  apt: name=elasticsearch state=latest  update_cache=yes cache_valid_time=3600
+  lineinfile: dest={{ config_file }} line='{{ config_line }}'
+#  notify: Reiniciar servicio ROLE
+  when: localhost_only == True
 
-- name: elasticsearch to automatically start during bootup
+- name: Reiniciar servicio ROLE
   sudo: yes
-  command: update-rc.d elasticsearch defaults 95 10
-
-- name: service elasticsearch start
-  sudo: yes
-  service: name=elasticsearch state=started
-
+  service: name='{{ package_name }}' state=restarted enabled=yes
