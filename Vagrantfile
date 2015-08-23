@@ -30,8 +30,33 @@ Vagrant.configure("2") do |config|
     zipi.vm.network "forwarded_port", host: 8080, guest: 80, auto_correct: true
     zipi.vm.network "forwarded_port",  host: 8081, guest: 8080, auto_correct: true
 
-    #zipi.vm.provision :shell, :path => "provision-sh/vagrant-bootstrap-lamp.sh"
-
-  end
+    zipi.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provision-ansible/install.yml"
+      
+      ansible.verbose = 'v'
+      
+      ansible.host_key_checking = false
+      ansible.sudo = true
+        
+      ansible.tags = ['kibana']
+      #ansible.skip_tags = ''
+      
+      ansible.extra_vars = {
+          ansible_ssh_user: 'vagrant',
+          vagrant_enable: true,
+          localhost_only: true
+          }
     
+      # STATIC INVENTORY
+      #ansible.inventory_path = "provision-ansible/hosts/all"
+      #ansible.limit = 'vagrant'
+        
+      # AUTO-GENERATED INVENTORY
+      ansible.groups = {
+        "group1" => ["zipi"],
+        "all_groups:children" => ["group1"],
+        #"group1:vars" => { "vagrant_enable" => true }
+      }
+    end
+  end
 end
