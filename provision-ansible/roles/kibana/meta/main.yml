@@ -2,4 +2,9 @@
 dependencies:
   - { role: elasticsearch }
   - { role: logstash }
-#  - { role: nginx }
+  - { role: nginx,
+    port_number: 5601,
+    site_name: kibana,
+    force_nginx: True,
+    config_file: roles/kibana/templates/kibana-nginx.j2
+    }

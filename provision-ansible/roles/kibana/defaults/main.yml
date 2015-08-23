@@ -1,15 +1,29 @@
 ---
+# kinaba package installation
+# full URL download: {{ package_url }}{{ name }}-{{ package_version }}{{ package_type }}{{ package_format }}
 name: kibana
 package_version: 4.1.1
 package_type: -linux-x64
 package_format: .tar.gz
-## {{ name }}-{{ package_version }}{{ package_type }}{{ package_format }}
 package_url: https://download.elastic.co/kibana/kibana/
 
+# kibana configuration specs
+localhost_only: True
 dest_folder: /opt/
 config_file: kibana/config/kibana.yml
 reg_exp: 'host: "0.0.0.0"'
 config_line: 'host: "localhost"'
-localhost_only: True
+
+# kibana init/boot configuration
 initd_url: https://gist.githubusercontent.com/thisismitch/8b15ac909aed214ad04a/raw/bce61d85643c2dcdfbc2728c55a41dab444dca20/kibana4
 command_line: update-rc.d kibana4 defaults 96 9
+
+# kibana extra packages
+packages:
+  - apache2-utils
+  - python-passlib
+  
+# kibana www access details
+kib_pass_file: /etc/nginx/htpasswd.users
+kib_username: kibanaadmin
+kib_pass: kibana123
