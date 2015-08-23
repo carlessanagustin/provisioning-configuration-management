@@ -1,3 +1,4 @@
 ---
 dependencies:
   - { role: openjdk }
+  - { role: ssl-cert, cert_name: logstash-forwarder }
