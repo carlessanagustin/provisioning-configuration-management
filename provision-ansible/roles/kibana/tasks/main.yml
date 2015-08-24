@@ -34,4 +34,5 @@
   with_items: packages
 
 - name: Create default password for kibanaadmin admin
+  sudo: yes
   htpasswd: path={{ kib_pass_file }} name={{ kib_username }}  password={{ kib_pass }} owner=root group=www-data mode=0640

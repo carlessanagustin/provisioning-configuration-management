@@ -28,3 +28,4 @@ base_packages:
    - lsof
    - fail2ban
    - wget
+   - scp

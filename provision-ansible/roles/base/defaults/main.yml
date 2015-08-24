@@ -3,6 +3,7 @@
 ntp_enabled: true
 ntp_timezone: Etc/UTC
 ntp_daemon: ntp
+cron_ntp: ntpdate es.pool.ntp.org
 
 # location
 exports:
