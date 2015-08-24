@@ -14,9 +14,11 @@
     - { role: nginx, tags: nginx }
     - { role: bind, tags: bind }
     - { role: ssl-cert, tags: ssl-cert }
+    - { role: logstash-forwarder, tags: logstash-forwarder }
 
 
 # commands...
-# ansible-playbook install.yml -i hosts/all -l aws -t base,nagios
+# ansible-playbook install.yml -i hosts/all -l aws -u ubuntu -t base,kibana --private-key=/Users/carles/.ssh/elk.pem
+# ansible-playbook install.yml -i hosts/aws -l aws-jenkins-ci -u ubuntu -t logstash-forwarder --private-key=/Users/carles/.ssh/jenkins-ci.pem
 #
 # review: --list-tasks --list-hosts -vvvv

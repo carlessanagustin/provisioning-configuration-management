@@ -1,0 +1,25 @@
+[monitoring]
+
+
+[logging]
+
+
+[ci]
+
+
+[aws:children]
+monitoring
+logging
+ci
+
+[aws:vars]
+vagrant_enable=False
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=/Users/carles/.ssh/testing-env.pem
+
+; -------------------------------------------------------------
+; short: ansible-playbook install-aws.yml -i hosts/aws
+; 
+; long: ansible-playbook install.yml -i hosts/aws -l logging -u ubuntu -t logstash-forwarder --private-key=/Users/carles/.ssh/testing-env.pem
+; 
+; extra: --list-tasks --list-hosts -vvvv --skip-tags=vagrant

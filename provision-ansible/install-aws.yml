@@ -1,0 +1,17 @@
+---
+- hosts: all
+  roles:
+    - { role: base, tags: base }
+
+- hosts: monitoring
+  roles:
+    - { role: ansible, tags: ansible }
+    - { role: nagios, tags: nagios }
+
+- hosts: logging
+  roles:
+    - { role: kibana, tags: kibana }
+
+- hosts: ci
+  roles:
+    - { role: jenkins, tags: jenkins }
