@@ -1,3 +1,4 @@
 ---
 dependencies:
-  - { role: openjdk }
+#  - { role: openjdk }
+  - { role: oracle-java }

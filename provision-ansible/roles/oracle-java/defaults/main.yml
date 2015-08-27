@@ -1,0 +1,10 @@
+---
+packages:
+  - oracle-java8-installer
+package_name: oracle-java8-installer
+ppa_repo: ppa:webupd8team/java
+debconf_question: shared/accepted-oracle-license-v1-1
+
+
+jenkins_public_key_url: https://jenkins-ci.org/debian/jenkins-ci.org.key
+jenkins_repo_url: deb http://pkg.jenkins-ci.org/debian binary/

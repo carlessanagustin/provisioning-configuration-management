@@ -1,0 +1,11 @@
+---
+- name: Add Oracle Java PPA
+  apt_repository: repo='{{ ppa_repo }}' state=present
+
+- name: Accept Oracle license
+  debconf: name='{{ package_name }}' question='{{ debconf_question }}' value='true' vtype='select'
+
+- name: Instalar ROLE y sus dependencias
+  sudo: yes
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
+  with_items: packages  
