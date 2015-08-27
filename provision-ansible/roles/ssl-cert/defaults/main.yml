@@ -1,6 +1,7 @@
 ---
 cert_name: default-certificate-name
 
+# folders
 cert_folder: /etc/pki/tls
 keyout_folder: private
 out_folder: certs
