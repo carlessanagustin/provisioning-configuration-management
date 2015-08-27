@@ -13,3 +13,34 @@ exports:
 location_commands:
   - locale-gen en_GB.UTF-8
   - dpkg-reconfigure locales
+  
+base_packages:
+   - git
+   - curl
+   - vim
+   - screen
+   - ssh
+   - tree
+   - lynx
+   - links
+   - links2
+   - build-essential
+   - make
+   - automake
+   - zip
+   - byobu
+   - htop
+   - rsync
+   - default-jdk
+   - sqlite3
+   - ntp  
+   - sysstat
+   - dstat
+   - screen
+   - telnet
+   - traceroute
+   - mtr
+   - lsof
+   - fail2ban
+   - wget
+   - openssh-client

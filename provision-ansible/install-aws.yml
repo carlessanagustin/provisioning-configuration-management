@@ -3,15 +3,23 @@
   roles:
     - { role: base, tags: base }
 
+- hosts: logging
+  roles:
+    - { role: kibana, tags: kibana }
+    
 - hosts: monitoring
   roles:
     - { role: ansible, tags: ansible }
     - { role: nagios, tags: nagios }
-
-- hosts: logging
-  roles:
-    - { role: kibana, tags: kibana }
+    - { role: logstash-forwarder, tags: logstash-forwarder }
 
 - hosts: ci
   roles:
     - { role: jenkins, tags: jenkins }
+    - { role: logstash-forwarder, tags: logstash-forwarder }
+
+#- hosts: development
+#  roles:
+#    - { role: jenkins, tags: jenkins }
+#    - { role: logstash-forwarder, tags: logstash-forwarder }
+
