@@ -1,0 +1,32 @@
+---
+- name: Instalar clave pública
+  sudo: yes
+  apt_key: url={{ public_key_url }} state=present
+      
+- name: Añadir URL de repositorio
+  sudo: yes
+  apt_repository: repo='{{ repo_url }}' state=present update_cache=yes
+  
+- name: Instalar ROLE
+  sudo: yes
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
+  with_items: packages
+
+- name: Crear carpetas de certificados
+  sudo: yes
+  file: path={{ item }} state=directory mode=0755 recurse=true
+  with_items: destination_cert
+
+#- name: Coger fichero certificado
+#  sudo: yes
+#  command: scp ubuntu@52.18.78.XXX:/etc/pki/tls/certs/logstash-forwarder.crt /etc/pki/tls/certs/logstash-forwarder.crt
+#  command: ssh user@remote sudo scp /path/to/file user@local.machine.com:/local/path
+
+- name: Copiar certificado local a carpeta remota
+  sudo: yes
+  copy: src=logstash-forwarder.crt dest=/etc/pki/tls/certs/logstash-forwarder.crt owner=root group=root mode=0644
+
+- name: Copiar template a etc
+  sudo: yes
+  template: src={{ package_name }}.conf dest={{ destination_conf }} owner=root group=root mode=0664
+  notify: Iniciar servicio ROLE

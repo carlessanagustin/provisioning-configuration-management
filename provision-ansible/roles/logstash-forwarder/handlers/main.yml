@@ -1,0 +1,4 @@
+---
+- name: Iniciar servicio ROLE
+  sudo: yes
+  service: name={{ package_name }} state=restarted enabled=yes
