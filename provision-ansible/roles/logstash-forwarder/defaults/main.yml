@@ -11,7 +11,10 @@ origin_cert: /etc/pki/tls/certs/logstash-forwarder.crt
 destination_conf: /etc
 
 # templates
-logstash_server: 192.168.32.10:5001
+## elasticsearch server info...
+#elastic_server: 192.168.32.10:5001
+server_ip: 192.168.32.10
+server_port: 5001
 logstash_timeout: 15
 files_to_log: '"paths": ["/var/log/syslog","/var/log/auth.log"],"fields": { "type": "syslog" }'
-template_files: logstash-forwarder.conf
+#template_files: logstash-forwarder.conf

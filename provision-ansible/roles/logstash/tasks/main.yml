@@ -17,10 +17,10 @@
   template: src={{ item }} dest={{ template_folder }} owner=root group=root mode=0644
   with_items: template_files
 
-- name: Reiniciar servicio ROLE
-  sudo: yes
-  service: name='{{ package_name }}' state=restarted enabled=yes
-
 - name: Copiar certificado creado por ROLE ssl-cert
   fetch: src={{ logstash_ssl_certificate }} dest=roles/logstash-forwarder/files/logstash-forwarder.crt flat=yes fail_on_missing=yes
   register: exists_cert
+
+- name: Reiniciar servicio ROLE
+  sudo: yes
+  service: name='{{ package_name }}' state=restarted enabled=yes

@@ -30,3 +30,4 @@
   sudo: yes
   template: src={{ package_name }}.conf dest={{ destination_conf }} owner=root group=root mode=0664
   notify: Iniciar servicio ROLE
+  changed_when: true

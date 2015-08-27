@@ -3,11 +3,11 @@
 
 Vagrant.configure("2") do |config|
  
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = 512
-    vb.cpus = 1
-    #vb.gui = true
-  end
+#  config.vm.provider "virtualbox" do |vb|
+#    vb.memory = 512
+#    vb.cpus = 1
+#    #vb.gui = true
+#  end
     
   config.vm.boot_timeout = 60
  
@@ -17,6 +17,10 @@ Vagrant.configure("2") do |config|
     
     zipi.vm.host_name = "zipi"
     zipi.vm.box = "ubuntu/trusty64"
+    zipi.vm.provider "virtualbox" do |vb|
+      vb.memory = 1024
+      vb.cpus = 1
+    end
       
     zipi.vm.synced_folder ".", "/vagrant",
       owner: "vagrant",
@@ -35,7 +39,7 @@ Vagrant.configure("2") do |config|
     zipi.vm.provision "ansible" do |ansible|
       ansible.playbook = "provision-ansible/install.yml"
       
-      ansible.verbose = 'vv'
+      ansible.verbose = 'v'
       
       ansible.host_key_checking = false
       ansible.sudo = true
@@ -68,6 +72,10 @@ Vagrant.configure("2") do |config|
     
     zape.vm.host_name = "zape"
     zape.vm.box = "ubuntu/trusty64"
+    zape.vm.provider "virtualbox" do |vb|
+      vb.memory = 512
+      vb.cpus = 1
+    end
       
     zape.vm.synced_folder ".", "/vagrant",
       owner: "vagrant",
@@ -86,7 +94,7 @@ Vagrant.configure("2") do |config|
     zape.vm.provision "ansible" do |ansible|
       ansible.playbook = "provision-ansible/install.yml"
       
-      ansible.verbose = 'vv'
+      ansible.verbose = 'v'
       
       ansible.host_key_checking = false
       ansible.sudo = true

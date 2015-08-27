@@ -17,4 +17,4 @@ template_folder: /etc/logstash/conf.d
 logstash_ssl_certificate: "/etc/pki/tls/certs/logstash-forwarder.crt"
 logstash_ssl_key: "/etc/pki/tls/private/logstash-forwarder.key"
 
-elastic_port: 5001
+server_port: 5001

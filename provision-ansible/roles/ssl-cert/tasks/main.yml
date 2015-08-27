@@ -3,7 +3,11 @@
   sudo: yes
   file: path={{ item }} state=directory mode=0755 recurse=true
   with_items: certs_folders
+
+- name: Copy SSL conf file
+  sudo: yes
+  template: src={{ source_conf }} dest={{ destination_conf }} owner=root group=root mode=0664
   
 - name: Create self-signed SSL certificate
   sudo: yes
-  command: openssl req -config /etc/ssl/openssl.cnf -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout {{ cert_folder }}/{{ keyout_folder }}/{{ cert_name }}.key -out {{ cert_folder }}/{{ out_folder }}/{{ cert_name }}.crt
+  command: openssl req -config {{ destination_conf }} -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout {{ cert_folder }}/{{ keyout_folder }}/{{ cert_name }}.key -out {{ cert_folder }}/{{ out_folder }}/{{ cert_name }}.crt
