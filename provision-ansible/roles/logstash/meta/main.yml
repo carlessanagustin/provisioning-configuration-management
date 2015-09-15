@@ -1,5 +1,5 @@
 ---
 dependencies:
-#  - { role: openjdk }
-  - { role: oracle-java }
+  - { role: openjdk }
+#  - { role: oracle-java }
   - { role: ssl-cert, cert_name: logstash-forwarder }

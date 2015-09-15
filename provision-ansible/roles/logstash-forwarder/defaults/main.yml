@@ -11,10 +11,12 @@ origin_cert: /etc/pki/tls/certs/logstash-forwarder.crt
 destination_conf: /etc
 
 # templates
-## elasticsearch server info...
-#elastic_server: 192.168.32.10:5001
-server_ip: 192.168.32.10
+## ELK info...
+log_server_ip: 192.168.32.10
 server_port: 5001
 logstash_timeout: 15
 files_to_log: '"paths": ["/var/log/syslog","/var/log/auth.log"],"fields": { "type": "syslog" }'
-#template_files: logstash-forwarder.conf
+
+# monitoring + ci servers...
+# ci_to_log: '{"paths":["/var/log/jenkins/jenkins.log"],"fields":{"type":"jenkins"}},{"paths":["/var/log/nginx/*.log"],"fields":{"type":"nginx"}}'
+# monitoring_to_log: '{"paths":["/var/log/nagios3/nagios.log"],"fields":{"type":"nagios"}},{"paths":["/var/log/apache2/*.log"],"fields":{"type":"apache2"}}'

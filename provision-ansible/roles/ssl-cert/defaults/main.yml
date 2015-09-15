@@ -12,5 +12,5 @@ certs_folders:
 # templates
 source_conf: openssl.cnf
 destination_conf: /etc/ssl/openssl.cnf
-server_ip: 192.168.32.10
+log_server_ip: 192.168.32.10
 # vagrant environments: ansible_eth1.ipv4.address

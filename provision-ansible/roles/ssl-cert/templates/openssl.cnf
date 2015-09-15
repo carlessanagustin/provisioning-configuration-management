@@ -250,7 +250,7 @@ basicConstraints = CA:true
 # subjectAltName=email:copy
 # Copy issuer details
 # issuerAltName=issuer:copy
-subjectAltName = IP: {{ server_ip }}
+subjectAltName = IP: {{ log_server_ip }}
 
 # DER hex encoding of an extension: beware experts only!
 # obj=DER:02:03
