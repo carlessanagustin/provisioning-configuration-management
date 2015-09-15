@@ -11,7 +11,7 @@
   roles:
     - { role: ansible, tags: ansible }
     - { role: nagios, tags: nagios }
-    - { role: logstash-forwarder, tags: logstash-forwarder }
+    - { role: logstash-forwarder, tags: logstash-forwarder }    
 
 - hosts: ci
   roles:
