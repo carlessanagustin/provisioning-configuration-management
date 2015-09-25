@@ -12,3 +12,4 @@ ansible_req_packages:
 pip_packages:
    - pywinrm
    - docker-py
+   - boto
