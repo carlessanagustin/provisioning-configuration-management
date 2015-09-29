@@ -2,5 +2,5 @@
 dependencies:
   - { role: base }
   - { role: mariadb }
-  - { role: nginx }
+  - { role: nginx, site_name: wordpress, force_nginx: True, config_file: roles/wordpress/templates/wordpress.conf }
   - { role: php-fpm }
