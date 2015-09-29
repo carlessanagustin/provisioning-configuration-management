@@ -1,0 +1,30 @@
+---
+- hosts: all
+  remote_user: vagrant
+  #hosts: wordpress-server
+  #remote_user: ubuntu
+  sudo: yes
+
+  roles:
+    - wordpress
+
+  vars:
+    vagrant_enable: True
+    wp_version: 4.3.1
+    # checksum=md5:{{ wp_md5 }}
+    wp_md5: de8004fa1035817435eaa780a681aaff
+    # checksum=sha1:{{ wp_sha1 }}
+    wp_sha1: b2e5652a6d2333cabe7b37459362a3e5b8b66221
+    wp_db_name: wordpress
+    wp_db_user: wordpress
+    wp_db_password: wordpress123
+    # WP: Disable All Updates
+    auto_up_disable: false
+    # WP: Define Core Update Level
+    core_update_level: minor
+    # MariaDB settings
+    #mysqlservice: mysql
+    mysql_port: 3306
+    # Nginx settings
+    nginx_port: 80
+    server_hostname: server.example.com

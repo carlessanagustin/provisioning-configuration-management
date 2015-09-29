@@ -2,10 +2,7 @@
 - name: restart apache2
   sudo: yes
   service: name=apache2 state=restarted
-  when: ansible_os_family == 'Debian'
 
 - name: restart nagios3
   sudo: yes
   service: name=nagios3 state=restarted
-  when: ansible_os_family == 'Debian'
-

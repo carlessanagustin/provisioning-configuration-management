@@ -1,0 +1,40 @@
+---
+- name: Install required PHP modules
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items:
+   - php5-gd
+   - libssh2-php
+  tags: install
+  
+- name: Download WordPress
+  get_url: url=http://wordpress.org/wordpress-{{ wp_version }}.tar.gz dest=/opt/wordpress-{{ wp_version }}.tar.gz
+  # ansible v2 >> checksum=sha1:{{ wp_sha1 }}
+      
+- name: Extract archive
+  command: chdir=/opt/ /bin/tar xvf wordpress-{{ wp_version }}.tar.gz creates=/opt/wordpress
+
+- name: Add group wordpress
+  group: name=wordpress
+
+- name: Add user wordpress
+  user: name=wordpress group=wordpress home=/opt/wordpress/
+
+- name: Fetch random salts for WordPress config
+  local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
+  register: wp_salt
+  sudo: no
+
+- name: Create WordPress database
+  mysql_db: name={{ wp_db_name }} state=present
+
+- name: Create WordPress database user
+  mysql_user: name={{ wp_db_user }} password={{ wp_db_password }} priv={{ wp_db_name }}.*:ALL host='localhost' state=present
+
+- name: Copy WordPress config file
+  template: src=wp-config.php dest=/opt/wordpress/
+
+- name: Change ownership of WordPress installation
+  file: path=/opt/wordpress/ owner=wordpress group=wordpress state=directory recurse=yes
+
+- name: Start php5-fpm
+  service: name=php5-fpm state=started enabled=yes

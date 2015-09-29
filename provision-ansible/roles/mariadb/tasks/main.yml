@@ -1,0 +1,16 @@
+---
+- name: Install MariaDB
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items:
+   - mariadb-server
+   - python-mysqldb
+   - python-mysql.connector
+  tags: install
+
+- name: MySQL configuration file
+  template: src=my.cnf.j2 dest=/etc/mysql/my.cnf
+  notify: 
+  - Restart MariaDB
+    
+- name: Start MariaDB Service
+  service: name=mysql state=started enabled=yes

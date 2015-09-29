@@ -6,12 +6,10 @@
 - name: reconfigure (Debian)
   sudo: yes
   shell: dpkg-reconfigure --frontend noninteractive tzdata
-  when: ansible_os_family == 'Debian'
 
 - name: Ensure NTP is at the latest version
   sudo: yes
   apt: name=ntp state=latest  update_cache=yes cache_valid_time=3600
-  when: ansible_os_family == 'Debian'
   notify:
     - Restart NTP
     
@@ -28,4 +26,3 @@
 - name: Add Spain daily cron job
   sudo: yes
   lineinfile: dest=/etc/cron.daily/ntpdate line='{{ cron_ntp }}' owner=root group=root mode=0755 create=yes
-  when: ansible_os_family == 'Debian'

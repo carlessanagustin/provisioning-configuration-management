@@ -1,0 +1,20 @@
+---
+- name: Install php5-fpm
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - php5
+    - php5-fpm
+    - php5-mysql
+    - php-pear
+    - php5-enchant
+    - php-mail
+    - libphp-phpmailer
+    - libphp-simplepie
+    - php-xml-util
+  tags: install
+
+- name: php5-fpm
+  sudo: yes
+  lineinfile: "dest=/etc/php5/fpm/php.ini state=present regexp=';cgi.fix_pathinfo=1' line='cgi.fix_pathinfo=0'"
+  notify: Restart php5-fpm
+  changed_when: true

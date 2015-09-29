@@ -3,3 +3,6 @@
 TODO.md
 aws-real
 *.crt
+rootkey.csv
+setup-module-example.json
+aws-keys.yml
