@@ -1,5 +1,6 @@
 ---
 - name: Install php5-fpm
+  sudo: yes
   apt: name={{ item }} state=present update_cache=yes
   with_items:
     - php5

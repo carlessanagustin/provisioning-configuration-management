@@ -1,3 +1,4 @@
 ---
 - name: Restart MariaDB
+  sudo: yes
   service: name=mysql state=restarted

@@ -1,5 +1,6 @@
 ---
 - name: Install MariaDB
+  sudo: yes
   apt: name={{ item }} state=installed update_cache=yes
   with_items:
    - mariadb-server
@@ -8,9 +9,11 @@
   tags: install
 
 - name: MySQL configuration file
+  sudo: yes
   template: src=my.cnf.j2 dest=/etc/mysql/my.cnf
   notify: 
   - Restart MariaDB
     
 - name: Start MariaDB Service
+  sudo: yes
   service: name=mysql state=started enabled=yes
