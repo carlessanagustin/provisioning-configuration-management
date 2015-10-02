@@ -72,7 +72,15 @@ define('WPLANG', '');
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
+
+{% if wp_debug %}
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', true);
+define('WP_DEBUG_DISPLAY', true);
+define('SCRIPT_DEBUG', true);
+{% else %}
 define('WP_DEBUG', false);
+{% endif %}
 
 /** Disable Automatic Updates Completely */
 define( 'AUTOMATIC_UPDATER_DISABLED', {{auto_up_disable}} );

@@ -1,50 +1,53 @@
 ---
 - name: Install required PHP modules
   sudo: yes
-  apt: name={{ item }} state=installed update_cache=yes
+  apt: name={{ item }} state=installed update_cache=yes cache_valid_time=3600
   with_items:
    - php5-gd
    - libssh2-php
   tags: install
-  
-- name: Download WordPress
+
+- name: Create Wordpress database
   sudo: yes
-  get_url: url=http://wordpress.org/wordpress-{{ wp_version }}.tar.gz dest=/opt/wordpress-{{ wp_version }}.tar.gz
-  # ansible v2 >> checksum=sha1:{{ wp_sha1 }}
+  mysql_db: name={{ wp_name }} state=present
+
+- name: Create Wordpress database user
+  sudo: yes
+  mysql_user: name={{ wp_db_user }} password={{ wp_db_password }} priv={{ wp_name }}.*:ALL host='localhost' state=present
+  
+- name: Download wordpress.tar.gz
+  sudo: yes
+  get_url: url=http://wordpress.org/wordpress-{{ wp_version }}.tar.gz dest={{ wp_dir }}/wordpress-{{ wp_version }}.tar.gz
       
 - name: Extract archive
   sudo: yes
-  command: chdir=/opt/ /bin/tar xvf wordpress-{{ wp_version }}.tar.gz creates=/opt/wordpress
+  unarchive: src={{ wp_dir }}/wordpress-{{ wp_version }}.tar.gz dest={{ wp_dir }} copy=no
 
-- name: Add group wordpress
-  sudo: yes
-  group: name=wordpress
-
-- name: Add user wordpress
-  sudo: yes
-  user: name=wordpress group=wordpress home=/opt/wordpress/
-
-- name: Fetch random salts for WordPress config
+- name: Fetch random salts for Wordpress config
+  sudo: no
   local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
   register: wp_salt
-  sudo: no
-
-- name: Create WordPress database
+  
+- name: Copy Wordpress config file
   sudo: yes
-  mysql_db: name={{ wp_db_name }} state=present
+  template: src=wp-config.php dest={{ wp_dir }}/{{ wp_name }}
 
-- name: Create WordPress database user
+- name: Change folder ownership
   sudo: yes
-  mysql_user: name={{ wp_db_user }} password={{ wp_db_password }} priv={{ wp_db_name }}.*:ALL host='localhost' state=present
+  file: path={{ wp_dir }}/{{ wp_name }} owner=www-data group=www-data state=directory recurse=yes
 
-- name: Copy WordPress config file
+- name: Correct folder permissions
   sudo: yes
-  template: src=wp-config.php dest=/opt/wordpress/
-
-- name: Change ownership of WordPress installation
-  sudo: yes
-  file: path=/opt/wordpress/ owner=wordpress group=wordpress state=directory recurse=yes
+  command: "{{ item }}"
+  with_items:
+    - 'find {{ wp_dir }}/{{ wp_name }} -type f -exec chmod 644 {} +'
+    - 'find {{ wp_dir }}/{{ wp_name }} -type d -exec chmod 755 {} +'
+    - 'chmod 600 {{ wp_dir }}//{{ wp_name }}/wp-config.php'
 
 - name: Start php5-fpm
   sudo: yes
-  service: name=php5-fpm state=started enabled=yes
+  service: name={{ item }} state=restarted enabled=yes
+  with_items:
+    - nginx
+    - php5-fpm
+

@@ -2,3 +2,4 @@
 nginx_packages:
   - nginx
 force_nginx: False
+site_name: example

@@ -13,7 +13,7 @@
   sudo: yes
   template: src={{ config_file }} dest=/etc/nginx/sites-available/{{ site_name }} owner=root group=root mode=0644
   when: force_nginx == True
-  
+
 - name: Activar nuevo site
   sudo: yes
   file: src=/etc/nginx/sites-available/{{ site_name }} dest=/etc/nginx/sites-enabled/{{ site_name }} state=link owner=root group=root
