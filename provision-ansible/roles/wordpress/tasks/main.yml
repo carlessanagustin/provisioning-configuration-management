@@ -44,7 +44,7 @@
     - 'find {{ wp_dir }}/{{ wp_name }} -type d -exec chmod 755 {} +'
     - 'chmod 600 {{ wp_dir }}//{{ wp_name }}/wp-config.php'
 
-- name: Start php5-fpm
+- name: Restart services
   sudo: yes
   service: name={{ item }} state=restarted enabled=yes
   with_items:

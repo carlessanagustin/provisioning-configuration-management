@@ -1,0 +1,11 @@
+---
+- hosts: all
+  remote_user: vagrant
+  #hosts: wordpress-server
+  #remote_user: ubuntu
+
+  roles:
+    - prestashop
+
+  vars:
+    vagrant_enable: True

@@ -37,9 +37,9 @@ Vagrant.configure("2") do |config|
     zipi.vm.network "forwarded_port",  host: 8081, guest: 8080, auto_correct: true
 
     zipi.vm.provision "ansible" do |ansible|
-      ansible.playbook = "provision-ansible/wordpress-site.yml"
+        ansible.playbook = "provision-ansible/site-prestashop.yml"
       
-      ansible.verbose = 'vvvv'
+      ansible.verbose = 'v'
       
       ansible.host_key_checking = false
       ansible.sudo = true

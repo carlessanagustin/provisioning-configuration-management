@@ -1,0 +1,13 @@
+---
+ps_version: 1.6.1.1
+ps_url: https://www.prestashop.com/download/old/prestashop_
+ps_dir: /usr/share/nginx/html
+ps_name: prestashop
+ps_db_name: prestashop
+ps_db_user: prestashop
+ps_db_password: prestashop123
+# MariaDB settings
+mysql_port: 3306
+# Nginx settings
+nginx_port: 80
+server_hostname: ps.example.com

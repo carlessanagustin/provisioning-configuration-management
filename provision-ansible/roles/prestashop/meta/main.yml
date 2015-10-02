@@ -1,0 +1,6 @@
+---
+dependencies:
+  - { role: base }
+  - { role: mariadb }
+  - { role: nginx, site_name: prestashop, force_nginx: True, config_file: roles/prestashop/templates/prestashop.conf }
+  - { role: php-fpm }
