@@ -40,8 +40,8 @@
   sudo: yes
   command: "{{ item }}"
   with_items:
-    - 'find {{ wp_dir }}/{{ wp_name }} -type f -exec chmod 644 {} +'
-    - 'find {{ wp_dir }}/{{ wp_name }} -type d -exec chmod 755 {} +'
+    - 'find {{ wp_dir }}/{{ wp_name }} -type f -exec chmod 664 {} +'
+    - 'find {{ wp_dir }}/{{ wp_name }} -type d -exec chmod 775 {} +'
     - 'chmod 600 {{ wp_dir }}//{{ wp_name }}/wp-config.php'
 
 - name: Restart services
@@ -50,4 +50,3 @@
   with_items:
     - nginx
     - php5-fpm
-

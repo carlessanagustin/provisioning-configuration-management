@@ -1,0 +1,12 @@
+---
+mysql_port: 3306
+maria_user: root
+maria_pass: mariadb123
+
+# note: more secure
+#bind_address: 127.0.0.1
+#user_access: 'localhost'
+
+# note: less secure
+bind_address: 0.0.0.0
+user_access: '%'

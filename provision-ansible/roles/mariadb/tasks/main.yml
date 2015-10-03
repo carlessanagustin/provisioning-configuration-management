@@ -11,9 +11,11 @@
 - name: MySQL configuration file
   sudo: yes
   template: src=my.cnf.j2 dest=/etc/mysql/my.cnf
-  notify: 
-  - Restart MariaDB
+
+#- name: MySQL local configuration file
+#  sudo: yes
+#  template: src=my.conf-user.j2 dest=./.my.cnf
     
 - name: Start MariaDB Service
   sudo: yes
-  service: name=mysql state=started enabled=yes
+  service: name=mysql state=restarted enabled=yes

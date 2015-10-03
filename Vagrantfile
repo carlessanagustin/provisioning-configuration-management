@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
     
     # host:port >> guest:port
     zipi.vm.network "forwarded_port", host: 8080, guest: 80, auto_correct: true
-    zipi.vm.network "forwarded_port",  host: 8081, guest: 8080, auto_correct: true
+    zipi.vm.network "forwarded_port",  host: 3306, guest: 3306, auto_correct: true
 
     zipi.vm.provision "ansible" do |ansible|
         ansible.playbook = "provision-ansible/site-prestashop.yml"

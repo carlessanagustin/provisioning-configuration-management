@@ -18,10 +18,11 @@
 - name: Create Prestashop database
   sudo: yes
   mysql_db: name={{ ps_name }} state=present
+  # login_user={{ maria_user }} login_password={{ maria_pass }}
 
 - name: Create Prestashop database user
   sudo: yes
-  mysql_user: name={{ ps_db_user }} password={{ ps_db_password }} priv={{ ps_name }}.*:ALL host='localhost' state=present
+  mysql_user: name={{ ps_db_user }} password={{ ps_db_password }} priv={{ ps_name }}.*:ALL host={{ user_access }} state=present
   
 - name: Download Prestashop package
   sudo: yes
@@ -31,26 +32,20 @@
   sudo: yes
   unarchive: src={{ ps_dir }}/prestashop-{{ ps_version }}.zip dest={{ ps_dir }} copy=no
 
-#- name: Fetch random salts for Prestashop config
-#  sudo: no
-#  local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
-#  register: ps_salt
-  
-#- name: Copy Prestashop config file
-#  sudo: yes
-#  template: src=ps-config.php dest={{ ps_dir }}/{{ ps_name }}
-
 - name: Change folder ownership
   sudo: yes
   file: path={{ ps_dir }}/{{ ps_name }} owner=www-data group=www-data state=directory recurse=yes
 
-#- name: Correct folder permissions
-#  sudo: yes
-#  command: "{{ item }}"
-#  with_items:
-#    - 'find {{ ps_dir }}/{{ ps_name }} -type f -exec chmod 644 {} +'
-#    - 'find {{ ps_dir }}/{{ ps_name }} -type d -exec chmod 755 {} +'
-#    - 'chmod 600 {{ ps_dir }}//{{ ps_name }}/ps-config.php'
+- name: Change folder ownership
+  sudo: yes
+  file: path={{ ps_dir }}/{{ ps_name }} owner=www-data group=www-data state=directory recurse=yes
+  
+- name: Correct folder permissions
+  sudo: yes
+  command: "{{ item }}"
+  with_items:
+    - 'find {{ ps_dir }}/{{ ps_name }} -type f -exec chmod 664 {} +'
+    - 'find {{ ps_dir }}/{{ ps_name }} -type d -exec chmod 775  {} +'
 
 - name: Restart services
   sudo: yes
@@ -59,3 +54,5 @@
     - nginx
     - php5-fpm
 
+# change name
+# /usr/share/nginx/html/prestashop/install

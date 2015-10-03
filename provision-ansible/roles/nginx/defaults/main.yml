@@ -3,3 +3,5 @@ nginx_packages:
   - nginx
 force_nginx: False
 site_name: example
+nginx_port: 80
+server_hostname: wp.example.com

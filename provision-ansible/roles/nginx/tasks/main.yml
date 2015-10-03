@@ -20,3 +20,9 @@
   when: force_nginx == True
   notify: Reiniciar servicio Nginx
   changed_when: True
+
+- name: Add www-data to vagrant user
+  sudo: yes
+  user: name=vagrant group=www-data groups=www-data,vagrant append=yes
+  when: vagrant_enable == True
+  tags: vagrant
