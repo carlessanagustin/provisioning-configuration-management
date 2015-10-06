@@ -7,3 +7,4 @@ rootkey.csv
 setup-module-example.json
 aws-keys.yml
 ps_theme
+ENV_VARS.sh

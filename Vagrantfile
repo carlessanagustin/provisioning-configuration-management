@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     zipi.vm.host_name = "zipi"
     zipi.vm.box = "ubuntu/trusty64"
     zipi.vm.provider "virtualbox" do |vb|
-      vb.memory = 1024
+      vb.memory = 512
       vb.cpus = 1
     end
       
