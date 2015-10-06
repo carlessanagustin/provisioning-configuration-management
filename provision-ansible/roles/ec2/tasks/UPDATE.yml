@@ -1,0 +1,20 @@
+---
+- name: START instances
+  ec2:
+    instance_ids: '{{ item }}'
+    region: '{{ ec2_region }}'
+    state: running
+    wait: '{{ ec2_wait }}'
+    vpc_subnet_id: '{{ ec2_vpc_subnet_id }}'
+    assign_public_ip: '{{ ec2_assign_public_ip }}'
+  tags: Ustart
+  with_items: var_instance_ids
+    
+- name: STOP instances
+  ec2:
+    instance_ids: '{{ item }}'
+    region: '{{ ec2_region }}'
+    state: stopped
+    wait: '{{ ec2_wait }}'
+  tags: Ustop
+  with_items: var_instance_ids

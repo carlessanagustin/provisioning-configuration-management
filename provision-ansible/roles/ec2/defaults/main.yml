@@ -1,0 +1,15 @@
+---
+ec2_key_name: testing-env
+ec2_instance_type: t2.micro
+ec2_image: ami-d05e75b8
+ec2_region: us-east-1
+ec2_wait: true
+ec2_assign_public_ip: yes
+ec2_vpc_subnet_id: 
+ec2_group: web-basic
+ec2_count: 1
+ec2_count_tag_name: 'testing-only'
+ec2_instance_tags_name: 'testing-only'
+ec2_instance_tags_type: 'Create Ubuntu Server 14.04 LTS (HVM), SSD Volume Type'
+
+ec2_groupname: monitoring

@@ -1,0 +1,3 @@
+---
+- include: ec2-instance.yml
+- include: ec2-role.yml

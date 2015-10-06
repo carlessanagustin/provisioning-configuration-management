@@ -10,7 +10,7 @@ logging
 ci
 
 [aws:vars]
-ansible_ssh_user=ubuntu
-ansible_connection=ssh
-ansible_ssh_port=22
-vagrant_enable=False
+ansible_ssh_user = ubuntu
+ansible_connection = ssh
+ansible_ssh_port = 22
+vagrant_enable = False

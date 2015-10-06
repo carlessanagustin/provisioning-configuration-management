@@ -1,0 +1,6 @@
+---
+- include: CREATE.yml #tags=create
+- include: READ.yml #tags=read
+- include: UPDATE.yml #tags=update
+- include: DELETE.yml #tags=delete
+#- include: LIST.yml tags=list

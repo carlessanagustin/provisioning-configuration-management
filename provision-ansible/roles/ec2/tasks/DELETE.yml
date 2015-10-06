@@ -1,0 +1,24 @@
+---
+- name: DELETE instances
+  ec2:
+    aws_access_key: '{{ ec2_access_key }}'
+    aws_secret_key: '{{ ec2_secret_key }}'
+    instance_ids: '{{ item }}'
+    region: '{{ ec2_region }}'
+    state: absent
+  tags: D
+  with_items: var_instance_ids
+# TODO: still thinking...
+- name: REMOVE instance_id from list roles/ec2/vars/main.yml
+  lineinfile: dest=roles/ec2/vars/main.yml regexp='^- {{ item }}' state=absent
+  with_items: var_instance_ids
+  tags: D
+
+#- name: REMOVE instance_id from list roles/ec2/vars/main.yml
+#  lineinfile: dest=roles/ec2/vars/main.yml regexp='^- {{ item }}' backup=yes state=absent
+#  with_items: var_instance_ids
+#  tags: D
+#- name: ADD IP to list hosts/ec2-aws
+#  lineinfile: dest=hosts/ec2-aws insertafter='^\[monitoring\]' line='{{ item.public_ip }}' state=present
+#  with_items: ec2.instances
+#  tags: C

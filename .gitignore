@@ -8,3 +8,4 @@ setup-module-example.json
 aws-keys.yml
 ps_theme
 ENV_VARS.sh
+ec2-default.ini

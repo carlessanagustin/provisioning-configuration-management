@@ -1,0 +1,20 @@
+---
+- name: Gather AWS EC2 facts
+  sudo: true
+  action: ec2_facts
+  register: aws_facts
+  tags: R
+  
+- debug: var=aws_facts
+  tags: R
+
+- name: Get AWS info
+  local_action: command python ec2.py --refresh-cache
+  register: aws_info
+  tags: R
+  
+- debug: var=aws_info
+  tags: R
+
+- debug: var=aws_info.ec2
+  tags: Roff
