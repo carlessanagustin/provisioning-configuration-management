@@ -4,13 +4,32 @@
   apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=latest
   with_items: apache_packages
 
-- name: Activate Mod_Rewrites
+- name: Enable mod_rewrites
   sudo: yes
-  command: a2enmod rewrite
+  command: a2enmod {{ item }}
+  with_items: apache_modules
 
 - name: Change expose_php option
   sudo: yes
   lineinfile: dest=/etc/php5/apache2/php.ini regexp='^expose_php = On' line='expose_php = Off' state=present
+  
+- name: Install Composer
+  sudo: yes
+  shell: '{{ item }}'
+  with_items: install_composer
+  tags: composer
+  
+- name: Remove Apache root folder
+  sudo: yes
+  command: mv -f /var/www /var/www-dft
+  tags: vagrant
+  when: vagrant_enable == True
+  
+- name: Link Apache root folder to /vagrant folder
+  sudo: yes
+  file: src=/vagrant dest=/var/www owner=www-data group=www-data state=link
+  tags: vagrant
+  when: vagrant_enable == True
   
 - name: Restart & activate Apache
   sudo: yes

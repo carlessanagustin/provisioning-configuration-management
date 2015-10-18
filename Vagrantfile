@@ -22,9 +22,14 @@ Vagrant.configure("2") do |config|
       vb.cpus = 1
     end
       
+#    zipi.vm.synced_folder ".", "/vagrant",
+#      owner: "vagrant",
+#      group: "vagrant",
+#      mount_options: ["dmode=775,fmode=664"]
+      
     zipi.vm.synced_folder ".", "/vagrant",
-      owner: "vagrant",
-      group: "vagrant",
+      owner: "www-data",
+      group: "www-data",
       mount_options: ["dmode=775,fmode=664"]
     
     zipi.vm.network "private_network",
