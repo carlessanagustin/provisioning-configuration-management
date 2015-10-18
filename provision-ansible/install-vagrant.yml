@@ -1,0 +1,8 @@
+---
+- hosts: all
+
+  roles:
+    - consul
+    
+#  vars:
+#    vagrant_enable: True

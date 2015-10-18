@@ -2,18 +2,30 @@
 - hosts: all
 
   roles:
-    - { role: base, tags: base }
-    - { role: docker, tags: docker }
     - { role: ansible, tags: ansible }
-    - { role: nagios, tags: nagios }
-    - { role: elasticsearch, tags: elasticsearch }
-    - { role: logstash, tags: logstash }
-    - { role: kibana, tags: kibana }
-    - { role: samba, tags: samba }
-    - { role: jenkins, tags: jenkins }
-    - { role: nginx, tags: nginx }
-#    - { role: php, tags: php }
+    - { role: apache, tags: apache }
+    - { role: base, tags: base }
     - { role: bind, tags: bind }
-    - { role: ssl-cert, tags: ssl-cert }
-    - { role: logstash-forwarder, tags: logstash-forwarder }
+    - { role: clean, tags: clean }
+    - { role: consul, tags: consul }
+    - { role: docker, tags: docker }
     - { role: ec2, tags: ec2 }
+    - { role: elasticsearch, tags: elasticsearch }
+    - { role: hyperv, tags: hyperv }
+    - { role: jenkins, tags: jenkins }
+    - { role: kibana, tags: kibana }
+    - { role: lamp, tags: lamp }
+    - { role: lemp, tags: lemp }
+    - { role: logstash, tags: logstash }
+    - { role: logstash-forwarder, tags: logstash-forwarder }
+    - { role: mariadb, tags: mariadb }
+    - { role: nagios, tags: nagios }
+    - { role: nginx, tags: nginx }
+    - { role: openjdk, tags: openjdk }
+    - { role: oracle-java, tags: oracle-java }
+    - { role: php-fpm, tags: php-fpm }
+    - { role: prestashop, tags: prestashop }
+    - { role: proxmox, tags: proxmox }
+    - { role: samba, tags: samba }
+    - { role: ssl-cert, tags: ssl-cert }
+    - { role: wordpress, tags: wordpress }

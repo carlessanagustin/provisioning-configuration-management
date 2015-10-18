@@ -1,0 +1,18 @@
+---
+- name: Proxmox local_pip_packages install
+  sudo: yes
+  local_action: pip name={{ item }} state=latest
+  with_items: local_pip_packages
+  when: local_reqs
+
+- name: LAUNCH proxmox instance
+  proxmox: 
+    vmid=100
+    node='uk-mc02'
+    hostname='example.org'
+    ostemplate='local:vztmpl/ubuntu-14.04-x86_64.tar.gz'
+    force=yes
+    api_user='root@pam'
+    api_password='1q2w3e'
+    api_host='node1'
+    password='123456'

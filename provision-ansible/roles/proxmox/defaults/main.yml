@@ -1,0 +1,5 @@
+---
+local_reqs: no
+local_pip_packages:
+  - proxmoxer
+  - requests
