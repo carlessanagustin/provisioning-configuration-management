@@ -1,0 +1,6 @@
+---
+# MariaDB settings
+mysql_port: 3306
+# Apache settings
+apache_port: 80
+server_hostname: default.example.com

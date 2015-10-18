@@ -1,0 +1,6 @@
+---
+# MariaDB settings
+mysql_port: 3306
+# Nginx settings
+nginx_port: 80
+server_hostname: default.example.com

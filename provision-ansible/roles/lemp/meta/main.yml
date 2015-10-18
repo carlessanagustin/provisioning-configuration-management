@@ -1,0 +1,5 @@
+---
+dependencies:
+  - { role: mariadb }
+  - { role: nginx, site_name: default, force_nginx: False }
+  - { role: php-fpm }

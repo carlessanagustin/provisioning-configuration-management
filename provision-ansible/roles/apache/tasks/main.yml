@@ -1,0 +1,17 @@
+---
+- name: Install Apache + PHP
+  sudo: yes
+  apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=latest
+  with_items: apache_packages
+
+- name: Activate Mod_Rewrites
+  sudo: yes
+  command: a2enmod rewrite
+
+- name: Change expose_php option
+  sudo: yes
+  lineinfile: dest=/etc/php5/apache2/php.ini regexp='^expose_php = On' line='expose_php = Off' state=present
+  
+- name: Restart & activate Apache
+  sudo: yes
+  service: name=apache2 state=restarted enabled=yes
