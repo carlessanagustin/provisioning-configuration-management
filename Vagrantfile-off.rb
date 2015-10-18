@@ -37,14 +37,14 @@ Vagrant.configure("2") do |config|
     zipi.vm.network "forwarded_port",  host: 3306, guest: 3306, auto_correct: true
 
     zipi.vm.provision "ansible" do |ansible|
-        ansible.playbook = "provision-ansible/install-all.yml"
+        ansible.playbook = "provision-ansible/install-vagrant.yml"
       
       ansible.verbose = 'v'
       
       ansible.host_key_checking = false
       ansible.sudo = true
         
-      ansible.tags = ['lamp']
+      #ansible.tags = ['base', 'ansible']
       #ansible.skip_tags = ''
       
       ansible.extra_vars = {
