@@ -22,21 +22,13 @@ Vagrant.configure("2") do |config|
       vb.cpus = 1
     end
       
-#    zipi.vm.synced_folder ".", "/vagrant",
-#      owner: "vagrant",
-#      group: "vagrant",
-#      mount_options: ["dmode=775,fmode=664"]
-      
     zipi.vm.synced_folder ".", "/vagrant",
-      owner: "www-data",
-      group: "www-data",
+      owner: "vagrant",
+      group: "vagrant",
+      #owner: "www-data",
+      #group: "www-data",
       mount_options: ["dmode=775,fmode=664"]
-    
-    zipi.vm.network "private_network",
-      ip: "192.168.32.10",
-      virtualbox__intnet: true,
-      auto_config: true
-    
+
     # host:port >> guest:port
     zipi.vm.network "forwarded_port", host: 8080, guest: 80, auto_correct: true
     zipi.vm.network "forwarded_port",  host: 3306, guest: 3306, auto_correct: true
@@ -58,6 +50,11 @@ Vagrant.configure("2") do |config|
           localhost_only: true
           }
     
+    zipi.vm.network "private_network",
+      ip: "192.168.32.10",
+      virtualbox__intnet: true,
+      auto_config: true
+
       # STATIC INVENTORY
       #ansible.inventory_path = "provision-ansible/hosts/all"
       #ansible.limit = 'vagrant'
