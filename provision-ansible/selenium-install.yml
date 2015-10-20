@@ -1,0 +1,22 @@
+---
+- hosts: seleniumHub
+  gather_facts: False
+
+  roles:
+    - selenium
+
+  vars:
+    activate_server: True
+    ansible_ssh_port: 10022
+    ansible_ssh_user: ubuntu
+
+- hosts: seleniumNode
+  gather_facts: False
+
+  roles:
+    - selenium
+
+  vars:
+    activate_server: False
+    ansible_ssh_port: 10122
+    ansible_ssh_user: ubuntu

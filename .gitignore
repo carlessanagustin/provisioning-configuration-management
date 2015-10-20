@@ -10,12 +10,15 @@ aws-keys.yml
 ENV_VARS.sh
 ec2-default.ini
 
-#### exceptions
+#### EXCEPT
 !html/info.php
 
-#### folders
+#### FOLDER
 ps_theme
 html/CodeIgniter-3.0.2.zip
 html/codeigniter/
 html/yii-basic-app-2.0.6.tgz
 html/yii/
+
+#### BINARY
+selenium-server-standalone-2.48.2.jar

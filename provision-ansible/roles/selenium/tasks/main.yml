@@ -1,0 +1,6 @@
+---
+- include: server.yml tags=SeleniumServer
+  when: activate_server==True
+
+- include: node.yml tags=SeleniumNode
+  when: activate_server==False
