@@ -1,11 +1,21 @@
 .vagrant
 .DS_Store
+
 TODO.md
 aws-real
 *.crt
 rootkey.csv
 setup-module-example.json
 aws-keys.yml
-ps_theme
 ENV_VARS.sh
 ec2-default.ini
+
+#### exceptions
+!html/info.php
+
+#### folders
+ps_theme
+html/CodeIgniter-3.0.2.zip
+html/codeigniter/
+html/yii-basic-app-2.0.6.tgz
+html/yii/
