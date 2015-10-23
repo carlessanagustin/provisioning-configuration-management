@@ -18,3 +18,5 @@ apache_modules:
 install_composer:
   - 'curl -sS https://getcomposer.org/installer | php'
   - 'mv composer.phar /usr/local/bin/composer'
+
+upload_filesize: 64M

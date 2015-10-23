@@ -1,0 +1,3 @@
+---
+package: phpmyadmin
+phpmyadmin_pass: mariadb123

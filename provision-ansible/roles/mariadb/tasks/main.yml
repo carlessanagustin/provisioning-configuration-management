@@ -7,7 +7,8 @@
     question='mysql-server/root_password'
     value='{{ maria_pass }}'
     vtype='password'
-
+  tags: install
+  
 # echo 'mariadb-server-5.5 mysql-server/root_password_again password root' | debconf-set-selections
 - name: debconf-set-selections mysql-server/root_password_again
   sudo: yes
@@ -16,7 +17,8 @@
     question='mysql-server/root_password_again'
     value='{{ maria_pass }}'
     vtype='password'
-
+  tags: install
+  
 # echo 'mariadb-server-5.5 mariadb-server/oneway_migration boolean true' | debconf-set-selections
 - name: debconf-set-selections mariadb-server/oneway_migration
   sudo: yes
@@ -25,6 +27,7 @@
     question='mariadb-server/oneway_migration'
     value='true'
     vtype='boolean'
+  tags: install
 
 - name: Install MariaDB
   sudo: yes

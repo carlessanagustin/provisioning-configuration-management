@@ -33,8 +33,8 @@ echo "mysql-server-5.5 mysql-server/root_password_again password $MYSQL_PASSWORD
 
 apt-get -y install mysql-client mysql-server
 
-echo "mysql-server mysql-server/root_password password $PHPMYADMIN_PASSWORD" | debconf-set-selections
-echo "mysql-server mysql-server/root_password_again password $PHPMYADMIN_PASSWORD" | debconf-set-selections
+#echo "mysql-server mysql-server/root_password password $PHPMYADMIN_PASSWORD" | debconf-set-selections
+#echo "mysql-server mysql-server/root_password_again password $PHPMYADMIN_PASSWORD" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/app-password-confirm password $PHPMYADMIN_PASSWORD" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/mysql/admin-pass password $MYSQL_PASSWORD" | debconf-set-selections

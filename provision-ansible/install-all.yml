@@ -24,6 +24,7 @@
     - { role: openjdk, tags: openjdk }
     - { role: oracle-java, tags: oracle-java }
     - { role: php-fpm, tags: php-fpm }
+    - { role: phpmyadmin, tags: phpmyadmin }
     - { role: prestashop, tags: prestashop }
     - { role: proxmox, tags: proxmox }
     - { role: samba, tags: samba }

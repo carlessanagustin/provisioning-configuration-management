@@ -1,0 +1,58 @@
+---
+# echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
+- name: debconf-set-selections phpmyadmin/dbconfig-install
+  sudo: yes
+  debconf:
+    name='phpmyadmin'
+    question='phpmyadmin/dbconfig-install'
+    vtype='boolean'
+    value='true'
+  tags: install
+  
+# echo "phpmyadmin phpmyadmin/app-password-confirm password $PHPMYADMIN_PASSWORD" | debconf-set-selections
+- name: debconf-set-selections phpmyadmin/app-password-confirm
+  sudo: yes
+  debconf:
+    name='phpmyadmin'
+    question='phpmyadmin/app-password-confirm'
+    vtype='password'
+    value='{{ phpmyadmin_pass }}'
+  tags: install
+  
+# echo "phpmyadmin phpmyadmin/mysql/app-pass password $PHPMYADMIN_PASSWORD" | debconf-set-selections
+- name: debconf-set-selections phpmyadmin/mysql/app-pass
+  sudo: yes
+  debconf:
+    name='phpmyadmin'
+    question='phpmyadmin/mysql/app-pass'
+    vtype='password'
+    value='{{ phpmyadmin_pass }}'
+  tags: install
+  
+# echo "phpmyadmin phpmyadmin/mysql/admin-pass password $MYSQL_PASSWORD" | debconf-set-selections
+- name: debconf-set-selections phpmyadmin/mysql/admin-pass
+  sudo: yes
+  debconf:
+    name='phpmyadmin'
+    question='phpmyadmin/mysql/admin-pass'
+    vtype='password'
+    value='{{ maria_pass }}'
+  tags: install
+
+# echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
+- name: debconf-set-selections phpmyadmin/reconfigure-webserver
+  sudo: yes
+  debconf:
+    name='phpmyadmin'
+    question='phpmyadmin/reconfigure-webserver'
+    value='multiselect'
+    vtype='apache2'
+  tags: install
+  
+# apt-get -y install phpmyadmin
+- name: Install phpmyadmin
+  sudo: yes
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items:
+   - phpmyadmin
+  tags: install

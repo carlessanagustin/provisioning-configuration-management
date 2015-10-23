@@ -9,10 +9,14 @@
   command: a2enmod {{ item }}
   with_items: apache_modules
 
-- name: Change expose_php option
+- name: Change expose_php in php.ini
   sudo: yes
   lineinfile: dest=/etc/php5/apache2/php.ini regexp='^expose_php = On' line='expose_php = Off' state=present
-  
+
+- name: Change upload_max_filesize in php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php5/apache2/php.ini regexp='^upload_max_filesize = 2M' line='upload_max_filesize = {{ upload_filesize }}' state=present
+
 - name: Install Composer
   sudo: yes
   shell: '{{ item }}'
