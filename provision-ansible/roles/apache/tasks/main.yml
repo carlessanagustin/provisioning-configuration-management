@@ -9,6 +9,10 @@
   command: a2enmod {{ item }}
   with_items: apache_modules
 
+- name: Enable php5-mcrypt
+  sudo: yes
+  command: php5enmod mcrypt
+
 - name: Change expose_php in php.ini
   sudo: yes
   lineinfile: dest=/etc/php5/apache2/php.ini regexp='^expose_php = On' line='expose_php = Off' state=present

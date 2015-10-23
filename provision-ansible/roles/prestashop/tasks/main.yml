@@ -12,6 +12,11 @@
    - php-soap
   tags: install
 
+- name: Enable php5-mcrypt
+  sudo: yes
+  command: php5enmod mcrypt
+  tags: install
+
 - name: change php.ini
   lineinfile: dest=/etc/php5/fpm/php.ini regexp='^upload_max_filesize' line='upload_max_filesize = 16M'
 
