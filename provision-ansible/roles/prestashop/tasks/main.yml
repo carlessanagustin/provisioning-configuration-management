@@ -10,6 +10,7 @@
    - openssl
    - php-apc
    - php-soap
+   - php5-curl
   tags: install
 
 - name: Enable php5-mcrypt
