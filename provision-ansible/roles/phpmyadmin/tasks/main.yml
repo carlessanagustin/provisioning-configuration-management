@@ -45,8 +45,8 @@
   debconf:
     name='phpmyadmin'
     question='phpmyadmin/reconfigure-webserver'
-    value='multiselect'
-    vtype='apache2'
+    vtype='multiselect'
+    value='apache2'
   tags: install
   
 # apt-get -y install phpmyadmin
