@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
       ansible.host_key_checking = false
       ansible.sudo = true
         
-        ansible.tags = ['lamp']
+        ansible.tags = ['lamp', 'phpmyadmin']
       #ansible.skip_tags = ''
       
       ansible.extra_vars = {
