@@ -7,7 +7,6 @@
     - { role: base, tags: base }
     - { role: bind, tags: bind }
     - { role: clean, tags: clean }
-    - { role: consul, tags: consul }
     - { role: docker, tags: docker }
     - { role: ec2, tags: ec2 }
     - { role: elasticsearch, tags: elasticsearch }

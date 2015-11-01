@@ -25,13 +25,13 @@ Vagrant.configure("2") do |config|
     zipi.vm.synced_folder ".", "/vagrant",
       owner: "vagrant",
       group: "vagrant",
-      #owner: "www-data",
-      #group: "www-data",
+#      owner: "www-data",
+#      group: "www-data",
       mount_options: ["dmode=775,fmode=664"]
 
     # host:port >> guest:port
     zipi.vm.network "forwarded_port", host: 8080, guest: 80, auto_correct: true
-    zipi.vm.network "forwarded_port",  host: 3306, guest: 3306, auto_correct: true
+    zipi.vm.network "forwarded_port",  host: 8081, guest: 3306, auto_correct: true
 
     zipi.vm.provision "ansible" do |ansible|
         ansible.playbook = "provision-ansible/install-all.yml"
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
       ansible.host_key_checking = false
       ansible.sudo = true
         
-      ansible.tags = ['lamp']
+        ansible.tags = ['lamp']
       #ansible.skip_tags = ''
       
       ansible.extra_vars = {

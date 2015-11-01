@@ -1,4 +1,3 @@
 ---
 dependencies:
-  - { role: mariadb }
-  - { role: apache }
+  - { role: phpmyadmin }
