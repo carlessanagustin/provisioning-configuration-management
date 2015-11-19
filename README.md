@@ -8,7 +8,7 @@ This is my personal repository of installation shell scripts and Ansible playboo
 
 ## 1. [Ansible](http://www.ansible.com/) Playbooks
 
-MORE: [An Ansible summary](ansible-summary.md)
+**Recommended reading:** [An Ansible summary](ansible-summary.md)
 
 ### Setup local Ansible environment
 
