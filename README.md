@@ -45,15 +45,15 @@ This is my personal repository of installation shell scripts and Ansible playboo
     
 4. Customize Vagrantfile
 
-        ```ruby
-        zipi.vm.box = "ubuntu/trusty64"
-        ansible.tags = ['base', 'ansible']
-        ansible.playbook = "provision-ansible/install-all.yml"
-        ansible.extra_vars = {
-            ansible_ssh_user: 'vagrant',
-            vagrant_enable: true
-        }
-        ```
+    ```ruby
+    zipi.vm.box = "ubuntu/trusty64"
+    ansible.tags = ['base', 'ansible']
+    ansible.playbook = "provision-ansible/install-all.yml"
+    ansible.extra_vars = {
+        ansible_ssh_user: 'vagrant',
+        vagrant_enable: true
+    }
+    ```
 
 > For more vm.box options: https://atlas.hashicorp.com/boxes/search
 
