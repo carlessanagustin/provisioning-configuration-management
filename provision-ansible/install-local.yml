@@ -11,4 +11,5 @@
     - { role: base, tags: base }
     - { role: docker, tags: docker }
 
-# RUN: $ ansible-playbook install-local.yml -i hosts/all -K
+# 1st run? $ bash ../provision-sh/vagrant-bootstrap-ansible.sh
+# then... $ ansible-playbook install-local.yml -i hosts/all -K

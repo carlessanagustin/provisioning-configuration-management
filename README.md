@@ -6,6 +6,10 @@ This is my personal repository of installation shell scripts and Ansible playboo
 
 **Please fork, use and comment this repo ;)**
 
+New Debian based system? Then run...
+
+    $ bash provision-sh/vagrant-bootstrap-ansible.sh
+
 ## 1. [Ansible](http://www.ansible.com/) Playbooks
 
 **Recommended reading:** [An Ansible summary](ansible-summary.md)
