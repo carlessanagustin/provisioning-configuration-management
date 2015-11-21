@@ -1,0 +1,14 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  sudo: True
+  
+  vars:
+    vagrant_enable: False
+
+  roles:
+    - { role: ansible, tags: ansible }
+    - { role: base, tags: base }
+    - { role: docker, tags: docker }
+
+# RUN: $ ansible-playbook install-local.yml -i hosts/all -K
