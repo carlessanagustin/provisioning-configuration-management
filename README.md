@@ -39,9 +39,16 @@ New Debian based system? Then run...
 
     	$ cd ~/provisioning
 
-2. Rename Vagrantfile-ansible file to Vagrantfile
+2. There are a few selected boxes ready to use
 
-		$ cp Vagrantfile-ansible Vagrantfile
+Name | Provisioning | Contents
+--- | --- | ---
+zipi | ansible role | base
+zape | ansible role | base
+lamp | ansible role | Linux, Apache, MySQL & PHP
+iac | ansible | Infrastructure as Code
+scripting | shell file or inline | ---
+n1 + n2 + n3 | ansible | consul testing
     
 3. Edit Vagrantfile
 
@@ -58,6 +65,9 @@ New Debian based system? Then run...
         vagrant_enable: true
     }
     ```
+5. Run the selected box
+
+        $ vagrant up [name]
 
 > For more vm.box options: https://atlas.hashicorp.com/boxes/search
 
