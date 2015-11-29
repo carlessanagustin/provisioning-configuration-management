@@ -7,7 +7,7 @@ case "${1:-''}" in
             echo "Selenium is already running."
         else
             export DISPLAY=localhost:99.0
-            java -jar {{ selenium_folder }}/{{ selenium_file }} > {{ selenium_logs }}/output.log 2> {{ selenium_logs }}/error.log & echo $! > /tmp/selenium.pid
+            java -jar {{ selenium_folder }}/{{ selenium_file }} -role {{ selenium_config }} > {{ selenium_logs }}/output.log 2> {{ selenium_logs }}/error.log & echo $! > /tmp/selenium.pid
             echo "Starting Selenium..."
 
             error=$?
@@ -41,7 +41,7 @@ case "${1:-''}" in
             test -f /tmp/selenium.pid && rm -f /tmp/selenium.pid
             sleep 1
             export DISPLAY=localhost:99.0
-            java -jar {{ selenium_folder }}/{{ selenium_file }} > {{ selenium_logs }}/output.log 2> {{ selenium_logs }}/error.log & echo $! > /tmp/selenium.pid
+            java -jar {{ selenium_folder }}/{{ selenium_file }} -role {{ selenium_config }} > {{ selenium_logs }}/output.log 2> {{ selenium_logs }}/error.log & echo $! > /tmp/selenium.pid
             echo "Reload Selenium..."
         else
             echo "Selenium isn't running..."

@@ -1,0 +1,12 @@
+---
+npm_packages:
+  - phantomjs
+  - webdriverio
+  - mocha
+  - chai
+  
+apt_packages:
+  - firefox
+  - xvfb
+  - chromium-chromedriver
+  - chromium-browser

@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.boot_timeout = 60
 ### START ###################################
 
-## zipi ##############################################################
+## BOX: zipi ##############################################################
     
   config.vm.define "zipi" do |zipi|
     
@@ -39,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.host_key_checking = false
       ansible.sudo = true
         
-      ansible.tags = ['base']
+        ansible.tags = ['webdriverio']
       #ansible.skip_tags = ''
       
       ansible.extra_vars = {
@@ -60,7 +60,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-### zape ##############################################################
+## BOX: zape ##############################################################
     
   config.vm.define "zape" do |zape|
     
@@ -105,7 +105,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
     
-## lamp ###################################
+## BOX: lamp ###################################
   config.vm.define "lamp" do |lamp|
     
     lamp.vm.host_name = "lamp"
@@ -155,7 +155,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-### iac ###################################
+## BOX: iac ###################################
   config.vm.define "iac" do |iac|
     
     iac.vm.host_name = "iac"
@@ -199,7 +199,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-### scripting ###################################
+## BOX: scripting ###################################
   config.vm.define "scripting" do |scripting|
     
     scripting.vm.host_name = "scripting"
@@ -221,7 +221,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     scripting.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get -y upgrade"
   end
 
-## n1 + n2 + n3 ###################################
+## BOX: n1 + n2 + n3 ###################################
   config.vm.define "n1" do |n1|
       n1.vm.hostname = "n1"
       n1.vm.box = "ubuntu/trusty64"

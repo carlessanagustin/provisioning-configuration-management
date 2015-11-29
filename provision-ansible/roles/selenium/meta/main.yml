@@ -1,3 +1,4 @@
 ---
 dependencies:
- - oracle-java
+#  - oracle-java
+  - openjdk

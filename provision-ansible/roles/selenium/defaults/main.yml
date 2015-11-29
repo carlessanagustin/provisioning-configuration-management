@@ -1,17 +1,22 @@
 ---
-selenium_stack:
+selenium_file: selenium-server-standalone-2.48.2.jar
+selenium_url: http://goo.gl/PJUZfa
+
+selenium_folder: /usr/lib/selenium
+selenium_logs: /var/log/selenium
+
+node_packages:
+  - build-essential
+  - nodejs
   - firefox
   - xvfb
   - chromium-chromedriver
   - chromium-browser
 
-selenium_server_standalone: http://goo.gl/PJUZfa
-selenium_jar: selenium-server-standalone-2.48.2.jar
+npm_packages:
+  - phantomjs
 
-selenium_folder: /usr/lib/selenium
-selenium_logs: /var/log/selenium
+install_nodejs_macosx: scripts/install-nodejs-macosx.sh
 
-selenium_node: node -hub http://10.10.10.1:4444/grid/register/
-selenium_hub: hub
-
-crontab_job: "@reboot sh -c 'Xvfb :99 -ac -screen 0 1024x768x8 > /tmp/xvfb.log 2>&1 &'"
+install_nodejs_debian: scripts/install-nodejs-debian.sh
+install_nodejs_debian_command: "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -"

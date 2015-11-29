@@ -20,6 +20,7 @@
     - { role: mariadb, tags: mariadb }
     - { role: nagios, tags: nagios }
     - { role: nginx, tags: nginx }
+    - { role: nodejs, tags: nodejs }
     - { role: openjdk, tags: openjdk }
     - { role: oracle-java, tags: oracle-java }
     - { role: php-fpm, tags: php-fpm }
@@ -27,5 +28,7 @@
     - { role: prestashop, tags: prestashop }
     - { role: proxmox, tags: proxmox }
     - { role: samba, tags: samba }
+    - { role: selenium, tags: selenium }
     - { role: ssl-cert, tags: ssl-cert }
+    - { role: webdriverio, tags: webdriverio }
     - { role: wordpress, tags: wordpress }

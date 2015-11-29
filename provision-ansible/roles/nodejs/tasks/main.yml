@@ -1,0 +1,22 @@
+---
+- name: Copy install_nodejs file for MacOSX
+  copy: src={{ install_nodejs_macosx }} dest=/root owner=root group=root mode=0644
+  sudo: True
+  when: ansible_distribution == "MacOSX"
+
+- name: Install node.js for MacOSX
+  command: bash {{ install_nodejs_macosx }}
+  sudo: True
+  when: ansible_distribution == "MacOSX"
+
+- name: Install node.js for Debian
+#  command: bash {{ install_nodejs_debian }}
+  shell: "{{ install_nodejs_debian_command }}"
+  sudo: True
+  when: ansible_os_family == "Debian"
+
+- name: Install node.js packages for Debian
+  apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=latest
+  sudo: True
+  with_items: node_packages
+  when: ansible_os_family == "Debian"

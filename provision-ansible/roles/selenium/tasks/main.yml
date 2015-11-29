@@ -1,6 +1,35 @@
 ---
-- include: server.yml tags=SeleniumServer
-  when: activate_server==True
+- name: Create Selenium folders
+  sudo: True
+  file: path="{{ item }}" state=directory mode=0755
+  with_items:
+    - "{{ selenium_folder }}"
+    - "{{ selenium_logs }}"
 
-- include: node.yml tags=SeleniumNode
-  when: activate_server==False
+- name: Download Selenium Server Standalone Jar
+  sudo: True
+  get_url: url={{ selenium_url }} dest={{ selenium_folder }}/{{ selenium_file }}
+  tags: download
+
+- name: Copy node init.d template
+  sudo: True
+  template: src=selenium_init.sh dest=/etc/init.d/selenium owner=root group=root mode=0755
+  tags: service
+  when: ansible_os_family == "Debian"
+
+- name: Copy runner to destination for MacOSX
+  template: src={{ selenium_run_server_file }} dest=./
+  tags: service
+  when: ansible_distribution == "MacOSX"
+
+- name: Start Selenium service
+  sudo: True
+  service: name=selenium state=started enabled=yes
+  tags: service
+  when: ansible_os_family == "Debian"
+  
+- name: Run Selenium Server script for MacOSX
+  command: bash {{ selenium_run_server_file }}
+  tags: service
+  when: ansible_distribution == "MacOSX"
+
