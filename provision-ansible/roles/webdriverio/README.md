@@ -1,16 +1,22 @@
 # Testing JS libraries
 
+* stack
 
+java
 selenium
 nodejs
 phantomjs
 webdriverio - http://webdriver.io
 
-mocha - https://mochajs.org
-chai - http://chaijs.com
-mocha-phantomjs
-jasmine - http://jasmine.github.io
+* frameworks
 
+mocha - https://mochajs.org + chai - http://chaijs.com
+jasmine - http://jasmine.github.io
+cucumber - https://github.com/cucumber/cucumber-js
+
+* extra
+
+mocha-phantomjs
 
 ## more info to follow...
 
