@@ -1,6 +1,7 @@
 .vagrant
 .DS_Store
 
+tests
 TODO.md
 aws-real
 *.crt

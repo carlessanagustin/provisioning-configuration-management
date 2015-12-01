@@ -2,8 +2,12 @@
 npm_packages:
   - phantomjs
   - webdriverio
+  
+testing_packages:
   - mocha
   - chai
+  - mocha-phantomjs
+  - jasmine
   
 apt_packages:
   - firefox
