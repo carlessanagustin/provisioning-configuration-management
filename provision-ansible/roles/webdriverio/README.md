@@ -1,18 +1,20 @@
 # Testing JS libraries
 
+## Headless stack
 
-selenium
-nodejs
-phantomjs
-webdriverio - http://webdriver.io
+* java
+* selenium
+* nodejs
+* phantomjs
+* webdriverio - http://webdriver.io
 
-mocha - https://mochajs.org
-chai - http://chaijs.com
-mocha-phantomjs
-jasmine - http://jasmine.github.io
+## Testing frameworks
 
+* mocha - https://mochajs.org + chai - http://chaijs.com
+* jasmine - http://jasmine.github.io
+* cucumber - https://github.com/cucumber/cucumber-js
 
-## more info to follow...
+### other tutorials...
 
 http://webapplog.com/tdd/
 https://semaphoreci.com/community/tutorials/getting-started-with-node-js-and-mocha

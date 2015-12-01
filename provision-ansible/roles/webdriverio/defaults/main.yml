@@ -6,7 +6,7 @@ npm_packages:
 testing_packages:
   - mocha
   - chai
-  - mocha-phantomjs
+  - cucumber
   - jasmine
   
 apt_packages:
