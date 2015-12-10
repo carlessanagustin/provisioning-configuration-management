@@ -16,6 +16,7 @@
 * karma - https://karma-runner.github.io
 * cucumber - https://github.com/cucumber/cucumber-js
 * protractor - https://angular.github.io/protractor/#/
+* frisby - http://frisbyjs.com/
 
 ### other tutorials...
 

@@ -30,5 +30,5 @@
     - { role: samba, tags: samba }
     - { role: selenium, tags: selenium }
     - { role: ssl-cert, tags: ssl-cert }
-    - { role: webdriverio, tags: webdriverio }
+    - { role: testingjs, tags: testingjs }
     - { role: wordpress, tags: wordpress }

@@ -29,8 +29,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     zipi.vm.synced_folder ".", "/vagrant", owner: "vagrant", group: "vagrant", mount_options: ["dmode=775,fmode=664"]
 
     # host:port >> guest:port
-    zipi.vm.network "forwarded_port", host: 8080, guest: 80, auto_correct: true
-    zipi.vm.network "forwarded_port",  host: 8081, guest: 3306, auto_correct: true
+    zipi.vm.network "forwarded_port", host: 3000, guest: 3000, auto_correct: true
+#    zipi.vm.network "forwarded_port", host: 8080, guest: 80, auto_correct: true
+#    zipi.vm.network "forwarded_port",  host: 8081, guest: 3306, auto_correct: true
     zipi.vm.network "private_network", ip: "192.168.32.10", virtualbox__intnet: true, auto_config: true
 
     zipi.vm.provision "ansible" do |ansible|
@@ -39,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.host_key_checking = false
       ansible.sudo = true
         
-        ansible.tags = ['webdriverio']
+        ansible.tags = ['testingjs']
       #ansible.skip_tags = ''
       
       ansible.extra_vars = {
@@ -74,8 +75,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     zape.vm.synced_folder ".", "/vagrant", owner: "vagrant", group: "vagrant", mount_options: ["dmode=775,fmode=664"]
         
     # host:port >> guest:port
-    zape.vm.network "forwarded_port", host: 8082, guest: 80, auto_correct: true
-    zape.vm.network "forwarded_port",  host: 8083, guest: 8080, auto_correct: true
+#    zape.vm.network "forwarded_port", host: 8082, guest: 80, auto_correct: true
+#    zape.vm.network "forwarded_port",  host: 8083, guest: 8080, auto_correct: true
     zape.vm.network "private_network", ip: "192.168.32.11", virtualbox__intnet: true, auto_config: true
 
     zape.vm.provision "ansible" do |ansible|

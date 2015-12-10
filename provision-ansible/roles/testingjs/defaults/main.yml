@@ -9,13 +9,18 @@ testing_packages:
   - mocha-phantomjs
   - jasmine
   - jasmine-node
+  - jasmine-core
   - karma
   - karma-jasmine
   - karma-mocha
   - karma-phantomjs-launcher
+  - karma-chrome-launcher
   - chai
+  - chai-as-promised
   - cucumber
   - protractor
+  - protractor-cucumber
+  - frisby
 
 apt_packages:
   - firefox
