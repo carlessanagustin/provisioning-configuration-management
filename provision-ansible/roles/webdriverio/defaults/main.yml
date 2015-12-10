@@ -2,13 +2,21 @@
 npm_packages:
   - phantomjs
   - webdriverio
+  - selenium-webdriver
   
 testing_packages:
   - mocha
+  - mocha-phantomjs
+  - jasmine
+  - jasmine-node
+  - karma
+  - karma-jasmine
+  - karma-mocha
+  - karma-phantomjs-launcher
   - chai
   - cucumber
-  - jasmine
-  
+  - protractor
+
 apt_packages:
   - firefox
   - xvfb
