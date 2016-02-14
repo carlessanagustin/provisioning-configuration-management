@@ -32,15 +32,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     zipi.vm.network "forwarded_port", host: 3000, guest: 3000, auto_correct: true
 #    zipi.vm.network "forwarded_port", host: 8080, guest: 80, auto_correct: true
 #    zipi.vm.network "forwarded_port",  host: 8081, guest: 3306, auto_correct: true
-    zipi.vm.network "private_network", ip: "192.168.32.10", virtualbox__intnet: true, auto_config: true
+#    zipi.vm.network "private_network", ip: "192.168.32.10", virtualbox__intnet: true, auto_config: true
+    zipi.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)", auto_config: true
 
     zipi.vm.provision "ansible" do |ansible|
       ansible.playbook = "provision-ansible/install-all.yml"
-      ansible.verbose = 'v'
+      ansible.verbose = 'vvv'
       ansible.host_key_checking = false
       ansible.sudo = true
         
-        ansible.tags = ['testingjs']
+        ansible.tags = ['docker']
       #ansible.skip_tags = ''
       
       ansible.extra_vars = {

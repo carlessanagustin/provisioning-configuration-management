@@ -1,30 +1,71 @@
 ---
-- name: Install docker
-  sudo: yes
-  shell: wget -qO- https://get.docker.com/ | sh
+- name: apt-get install docker_packages
+  become: yes
+  tags: docker
+  when: ansible_distribution == 'Ubuntu'
+  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
+  with_items: docker_packages
+  
+- name: Add the new GPG key
+  become: yes
+  tags: docker
+  when: ansible_distribution == 'Ubuntu'
+  apt_key: keyserver={{ keyserver }} id={{ keyserver_id }} state=present
+  
+- name: Add /etc/apt/sources.list.d/docker.list
+  become: yes
+  tags: docker
+  apt_repository: repo={{ docker_sources }} state=present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
+
+- name: Purge the old repo if it exists
+  become: yes
+  tags: docker
+  when: ansible_distribution == 'Ubuntu'
+  apt: name=lxc-docker state=absent purge=yes update_cache=yes
+  
+- name: Get kernel version
+  become: yes
+  tags: docker
+  when: ansible_distribution == 'Ubuntu'
+  command: uname -r
+  register: kernel
 
 - name: Create docker group
-  sudo: yes
+  become: yes
+  tags: docker
+  when: ansible_distribution == 'Ubuntu'
   group: name=docker  state=present
   
 - name: Add user to docker group
-  sudo: yes
+  become: yes
+  tags: docker
+  when: ansible_distribution == 'Ubuntu'
   user: name={{ item }} group=docker append=yes
   with_items: user_to_docker
 
-- name: apt-get install docker_packages
-  sudo: yes
-  apt: name={{ item }} state=latest  update_cache=yes cache_valid_time=3600
-  with_items: docker_packages
-  ignore_errors: yes
+- name: Install Docker
+  become: yes
+  tags: docker
+  when: ansible_distribution == 'Ubuntu'
+  apt: name={{ item }} state=latest
+  with_items:
+    - linux-image-extra-{{ kernel.stdout}}
+    - docker-engine
+  notify: start docker service
 
-- name: Install docker-compose
-  sudo: yes
-  shell: curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+- name: Install docker-compose A
+  become: yes
   tags: docker-compose
-
-- name: Enable docker-compose
-  sudo: yes
-  file: path=/usr/local/bin/docker-compose state=file mode="u+w,g+x,o+x"
-  tags: docker-compose
+  pip: name=docker-compose state=latest
   
+#- name: Install docker-compose B
+#  become: yes
+#  tags: docker-compose
+#  command: curl -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+#
+#- name: Enable docker-compose B
+#  become: yes
+#  tags: docker-compose
+#  file: path=/usr/local/bin/docker-compose state=file mode="u+w,g+x,o+x"
+

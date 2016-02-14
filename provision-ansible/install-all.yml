@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: aws
 
   roles:
     - { role: ansible, tags: ansible }
@@ -32,3 +32,8 @@
     - { role: ssl-cert, tags: ssl-cert }
     - { role: testingjs, tags: testingjs }
     - { role: wordpress, tags: wordpress }
+
+- hosts: vagrant
+
+  roles:
+    - { role: docker, tags: docker }
